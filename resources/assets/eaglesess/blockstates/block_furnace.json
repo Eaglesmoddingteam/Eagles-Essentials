@@ -1,0 +1,15 @@
+{
+    "variants": {
+        "normal": {"model": "eaglesess:brick_furnace_normal"},
+        "variants": {
+        "isMaster": {
+            "true": {
+                "model" : "eaglesess:brick_furnace_master"
+            },
+            "false": {
+            
+            } 
+    }
+}
+}
+}

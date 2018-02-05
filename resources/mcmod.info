@@ -1,0 +1,16 @@
+[
+{
+  "modid": "eaglesess",
+  "name": "Eagles Essentials",
+  "description": "The essentials you need",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tebreca","Igrek","xkjmaster_1x"],
+  "credits": "nothing in here",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

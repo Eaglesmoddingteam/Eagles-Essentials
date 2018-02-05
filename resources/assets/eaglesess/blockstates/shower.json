@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "eaglesess:agricultural_shower"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

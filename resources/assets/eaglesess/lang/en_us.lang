@@ -1,0 +1,56 @@
+tile.block_furnace.name = furnace part
+
+itemGroup.EaglesEssentialsIngots=Eagles Essentials Metals
+itemGroup.EaglesEssentialsoitandtool= Eagles Essentials Items
+itemGroup.EaglesEssentialsBlocks= Eagles Essentials Blocks
+
+item.bronze_ingot.name=Bronze Ingot
+item.brass_ingot.name=Brass Ingot
+item.cobalt_ingot.name=Cobalt Ingot
+item.copper_ingot.name=Copper Ingot
+item.lead_ingot.name=Lead Ingot
+item.platinum_ingot.name=Platinum Ingot
+item.tin_ingot.name=Tin Ingot
+item.impossible_alloy.name=Impossible Alloy
+item.zinc_shard.name=Shard Of Zinc
+item.axe_impossible.name=Impossible Axe
+item.sword_impossible.name=Impossible Sword
+item.pick_impossible.name=Impossible Pickaxe
+
+item.wooden_plating.name=Wooden Plating
+item.block_uniter.name=Block uniter
+item.brass_gear.name=Brass Gear
+item.bronze_gear.name=Bronze Gear
+item.cobalt_gear.name=Cobalt Gear
+item.copper_gear.name=Copper Gear
+item.gold_gear.name=Gold Gear
+item.impossible_alloy_gear.name=Impossible Gear
+item.iron_gear.name=Iron Gear
+item.lead_gear.name=Lead Gear
+item.platinum_gear.name = Platinum Gear
+item.tin_gear.name=Tin Gear
+item.wooden_gear.name=Wooden Gear
+item.stone_gear.name=Stone Gear
+
+tile.bronze_block.name=Block Of Bronze
+tile.brass_block.name=Block Of Brass
+tile.cobalt_block.name=Block Of Cobalt
+tile.copper_block.name=Block Of Copper
+tile.lead_block.name=Block Of Lead
+tile.platinum_block.name=Block Of Platinum
+tile.tin_block.name=Block Of Tin
+
+tile.cobalt_ore.name=Cobalt Ore
+tile.copper_ore.name=Copper Ore
+tile.lead_ore.name=Lead Ore
+tile.platinum_ore.name=Platinum Ore
+tile.tin_ore.name=Tin Ore
+tile.zinc_ore.name=Zinc Ore
+
+tile.harvester.name=Harvester
+tile.factory_table.name=Factory Table
+tile.teleporter.name=Teleporting Shaft
+tile.wooden_casing.name=Wooden Casing
+tile.block_breaker.name=Block Breaker
+tile.shower.name=Agricultural Shower
+tile.fluid_collector.name=Liquid Collector

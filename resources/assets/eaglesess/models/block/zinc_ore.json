@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+		"particle": "eaglesess:blocks/zinc_ore",
+        "all": "eaglesess:blocks/zinc_ore"
+    }
+}

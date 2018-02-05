@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "particle": "eaglesess:machines/wooden_casing",
+        "down": "eaglesess:machines/wooden_casing",
+        "west": "eaglesess:machines/factory_table_side",
+        "east": "eaglesess:machines/factory_table_side",
+        "north": "eaglesess:machines/harvester",
+        "south": "eaglesess:machines/factory_table_side",
+        "up" : "eaglesess:machines/wooden_casing"
+    }
+}

@@ -1,0 +1,12 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "eaglesess:liquid_collector"
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{
+		  "model": "eaglesess:liquid_hand"
+		}]
+	}
+}

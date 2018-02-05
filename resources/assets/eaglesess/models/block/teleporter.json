@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "particle": "eaglesess:machines/wooden_casing",
+        "down": "eaglesess:machines/wooden_casing",
+        "west": "eaglesess:machines/teleporting_shaft_side",
+        "east": "eaglesess:machines/teleporting_shaft_side",
+        "north": "eaglesess:machines/teleporting_shaft_side",
+        "south": "eaglesess:machines/teleporting_shaft_side",
+        "up" : "eaglesess:machines/teleporting_shaft_top"
+    }
+}
