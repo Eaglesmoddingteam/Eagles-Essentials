@@ -57,8 +57,8 @@ public class TileFluidCollector extends TileEntity implements ITickable{
 			BlockStaticLiquid liquid = (BlockStaticLiquid) block;
 			Fluid fluid = FluidRegistry.lookupFluidForBlock(block);
 			if (fluid != null) {
-				int i = top.getPropertyKeys().contains(liquid.LEVEL) ? (int) top.getProperties().get(liquid.LEVEL) : 0;
-				storage.fillInternal(new FluidStack(fluid, i == 0 ? 1000 : 20), true);
+				Comparable<?> i = top.getPropertyKeys().contains(liquid.LEVEL) ? top.getProperties().get(liquid.LEVEL) : 0;
+				storage.fillInternal(new FluidStack(fluid, i.equals(0) ? 1000 : 20), true);
 				world.setBlockToAir(PosOnTop);
 			}
 		}
@@ -74,7 +74,7 @@ public class TileFluidCollector extends TileEntity implements ITickable{
 			if(world.getTileEntity(under).hasCapability(CFH, null)) {
 				IFluidHandler storage = world.getTileEntity(under).getCapability(CFH, null);
 				FluidStack toFill = new FluidStack(this.storage.getFluid().getFluid(), this.storage.getFluidAmount() > 200 ? 200 : this.storage.getFluidAmount());
-				storage.fill(this.storage.drainInternal(storage.fill(toFill, false), true), true);
+				this.storage.drainInternal(storage.fill(toFill, true), true);
 			}
 	}
 

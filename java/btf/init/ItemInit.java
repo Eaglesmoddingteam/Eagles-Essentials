@@ -3,6 +3,7 @@ package btf.init;
 
 import btf.main.Main;
 import btf.objects.items.ItemBase;
+import btf.objects.items.ItemTeleportingWand;
 import btf.objects.items.book.ItemBook;
 import btf.objects.tools.ImPossibiliumAxe;
 import btf.objects.tools.ImPossibiliumPickaxe;
@@ -44,13 +45,17 @@ public class ItemInit {
 	public static Item book = new ItemBook("manual_book", 1, Main.itemstab);
 	//Plating and other crafting materials
 	public static ItemBase plating = new ItemBase("wooden_plating", Main.itemstab);
+	public static ItemBase machine_plating = new ItemBase("machine_plating", 64, Main.itemstab);
 	//tools
 	public static ItemBase block_uniter = new ItemBase("block_uniter", Main.itemstab);
 	public static ImPossibiliumAxe imPossibiliumAxe = new ImPossibiliumAxe("axe_impossible", impossiblealloy);
 	public static ImPossibiliumSword imPossibiliumSword = new ImPossibiliumSword(impossiblealloy, "sword_impossible");
 	public static ImPossibiliumPickaxe imPossibiliumPick = new ImPossibiliumPickaxe(impossiblealloy, "pick_impossible");
-
+	public static ItemTeleportingWand telewand = new ItemTeleportingWand();
+	
 	public static Item[] items = {
+			//book
+			//book,
 			//metals
 			bronze,
 			brass,
@@ -80,7 +85,9 @@ public class ItemInit {
 			imPossibiliumSword,
 			imPossibiliumPick,
 			//Plating and other crafting materials
-			plating
+			plating,
+			machine_plating,
+			telewand
 	};
 
 	private static void oreDictionaryRegistration() {

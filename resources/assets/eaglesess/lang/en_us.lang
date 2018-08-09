@@ -16,8 +16,10 @@ item.zinc_shard.name=Shard Of Zinc
 item.axe_impossible.name=Impossible Axe
 item.sword_impossible.name=Impossible Sword
 item.pick_impossible.name=Impossible Pickaxe
+item.teleporting_wand.name=Teleporting Staff
 
 item.wooden_plating.name=Wooden Plating
+item.machine_plating.name=Redstone Chipset
 item.block_uniter.name=Block uniter
 item.brass_gear.name=Brass Gear
 item.bronze_gear.name=Bronze Gear
@@ -54,3 +56,6 @@ tile.wooden_casing.name=Wooden Casing
 tile.block_breaker.name=Block Breaker
 tile.shower.name=Agricultural Shower
 tile.fluid_collector.name=Liquid Collector
+tile.telepad.name=Teleport Receiver
+tile.heatcell.name=Heat Cell
+tile.squeezer.name=Squeezer

@@ -18,12 +18,10 @@ public class Seasons extends WorldSavedData implements ITickable {
 	  }
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -1,6 +1,5 @@
 package btf.objects.tools;
 
-
 import java.util.jar.Attributes;
 
 import btf.main.Main;
@@ -26,30 +25,31 @@ public class ImPossibiliumSword extends ItemSword {
 
 	public ImPossibiliumSword(ToolMaterial material, String name) {
 		super(material);
-		 setUnlocalizedName(name);
-	        setRegistryName(name);
-	        setCreativeTab(Main.itemstab);
+		setUnlocalizedName(name);
+		setRegistryName(name);
+		setCreativeTab(Main.itemstab);
+
 	}
-	
+
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
 		NBTTagCompound compound = player.getActiveItemStack().getTagCompound();
-		if(compound == null) {
+		if (compound == null) {
 			player.getActiveItemStack().setTagCompound(new NBTTagCompound());
 			compound = player.getActiveItemStack().getTagCompound();
 		}
-		if(compound.hasKey("uses")) {
+		if (compound.hasKey("uses")) {
 			int i = compound.getInteger("uses");
 			int level = compound.getInteger("level");
-			if(i >= (10 + (5 * level))) {
+			if (i >= (10 + (5 * level))) {
 				i = 0;
 				compound.setInteger("uses", 0);
 				level++;
 				compound.setInteger("level", level);
 				player.sendStatusMessage(new TextComponentString("Your sword is now level " + level + "!"), true);
 			}
-			
-				entity.attackEntityFrom(DamageSource.ON_FIRE, (float) ((Math.random() * 10 + 1) * level + 1));
+
+			entity.attackEntityFrom(DamageSource.ON_FIRE, (float) ((Math.random() * 10 + 1) * level + 1));
 			compound.setInteger("uses", i + 1);
 		} else {
 			compound.setInteger("uses", 0);

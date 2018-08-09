@@ -60,8 +60,6 @@ public static MainHandler furnaceHelper = new MainHandler();
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent event) {
-		BlockColors.init().registerBlockColorHandler(new SeasonColor(), Blocks.GRASS, Blocks.LEAVES, Blocks.LEAVES2);
-		CraftingHandler.removeRecipes();
 		CraftingHandler.RegisterRecipes();
 		GameRegistry.registerWorldGenerator(new OresHandler(), 0);
 		proxy.registerTileEntities();

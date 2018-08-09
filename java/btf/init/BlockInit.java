@@ -2,9 +2,12 @@ package btf.init;
 
 
 import btf.main.Main;
+import btf.objects.blocks.BlockAccumulator;
 import btf.objects.blocks.BlockBase;
 import btf.objects.blocks.BlockFluidCollector;
 import btf.objects.blocks.BlockFurnaceBrick;
+import btf.objects.blocks.BlockHeatCell;
+import btf.objects.blocks.BlockSqueezer;
 import btf.objects.blocks.Machine;
 import btf.objects.blocks.MachineShower;
 import btf.util.handlers.MachineHandler;
@@ -45,10 +48,12 @@ public class BlockInit {
 	public static Machine teleporter = new Machine("teleporter", Material.WOOD, Main.blocksTab, MachineTypes.TELEPORTER);
 	public static Machine blockbreaker = new Machine("block_breaker", Material.WOOD, Main.blocksTab, MachineTypes.BLOCKBREAKER);
 	public static Machine assembler = new Machine("assembler", Material.WOOD, Main.blocksTab, MachineTypes.ASSEMBLER);
-	public static BlockBase fluidcollector = new BlockFluidCollector("fluid_collector", Material.WOOD, Main.blocksTab, 1);
+	public static BlockFluidCollector fluidcollector = new BlockFluidCollector("fluid_collector", Material.WOOD, Main.blocksTab, 1);
 	public static MachineShower shower = new MachineShower("shower", Material.WOOD, Main.blocksTab, 1);
-	
-	
+	public static BlockHeatCell heatCell = new BlockHeatCell();
+	public static BlockAccumulator impossibilium_Accumulator = new BlockAccumulator();
+	public static BlockBase telepad = new BlockBase("telepad", Material.ROCK, Main.blocksTab, 2);
+	public static BlockSqueezer squeezer = new BlockSqueezer();
 	
 	public static Block[] blocks = {
 			//Metal Blocks
@@ -75,7 +80,10 @@ public class BlockInit {
 			harvester,
 			teleporter,
 			blockbreaker,
-			shower
+			shower,
+			heatCell,
+			telepad,
+			squeezer
 			//assembler
 	};
 	

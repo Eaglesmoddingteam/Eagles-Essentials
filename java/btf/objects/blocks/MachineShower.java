@@ -36,13 +36,10 @@ public class MachineShower extends BlockBase implements ITileEntityProvider{
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		IBlockState neighbor = worldIn.getBlockState(fromPos);
-		if(neighbor.getBlock() == Blocks.REDSTONE_WIRE) {
-			BlockRedstoneWire nc = (BlockRedstoneWire) neighbor.getBlock();
-			if(neighbor.getValue(nc.POWER) > 1) {
+		if(worldIn.isBlockPowered(pos)) {
 				TileShower tile = (TileShower) worldIn.getTileEntity(pos);
 				if(tile != null)
 				tile.fire(worldIn);
-			}
 		}
 	}
 

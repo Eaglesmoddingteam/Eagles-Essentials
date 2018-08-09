@@ -9,17 +9,17 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PreparedRecipeRegistry {
 	private ArrayList<PreparedRecipe> recipes = new ArrayList<>(1000);
-	
+
 	private final static PreparedRecipeRegistry INSTANCE = new PreparedRecipeRegistry();
-	
+
 	public static void addRecipe(IRecipe recipe) {
 		INSTANCE.recipes.add(new PreparedRecipe(recipe));
 	}
-	
+
 	public static void postinit() {
-		Iterator i = ForgeRegistries.RECIPES.iterator();
-		while(i.hasNext()) {
-			IRecipe recipe =  (IRecipe) i.next();
+		Iterator<IRecipe> i = ForgeRegistries.RECIPES.iterator();
+		while (i.hasNext()) {
+			IRecipe recipe = i.next();
 			addRecipe(recipe);
 		}
 	}

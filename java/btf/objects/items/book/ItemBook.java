@@ -2,6 +2,7 @@ package btf.objects.items.book;
 
 
 import btf.main.Main;
+import btf.objects.GUI.GuiBook;
 import btf.objects.items.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +19,7 @@ public class ItemBook extends ItemBase {
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		playerIn.openGui(new Main(),1 , worldIn, (int) playerIn.posX, (int) playerIn.posX, (int) playerIn.posX);
+		Main.proxy.openGUI(new GuiBook());
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 		}
 }

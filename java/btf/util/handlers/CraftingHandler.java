@@ -43,23 +43,12 @@ public class CraftingHandler {
 		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "tingear"), new ResourceLocation(Vars.MOD_ID + ":" + "gearupgrade"), new ItemStack(ItemInit.tinGear), "PSP","SAS","PSP", 'P', (Item) ItemInit.tin, 'S', Items.STICK, 'A',(Item) ItemInit.woodGear);
 		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "stonegear"), new ResourceLocation(Vars.MOD_ID + ":" + "gearupgrade"), new ItemStack(ItemInit.stoneGear), "PSP","SAS","PSP", 'P', Item.getItemFromBlock(Blocks.COBBLESTONE), 'S', Items.STICK, 'A',(Item) ItemInit.woodGear);
 		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "casing"), new ResourceLocation(Vars.MOD_ID + ":" + "casing"), new ItemStack(Item.getItemFromBlock(BlockInit.casingWooden)), "PSP","SAS","PSP", 'S', (Item) ItemInit.plating, 'P', Items.STICK, 'A', (Item) ItemInit.woodGear);
-		 GameRegistry.addShapelessRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "platingwooden"), new ResourceLocation(Vars.MOD_ID + ":" + "platingwooden"), new ItemStack(ItemInit.plating, 4), Ingredient.fromItem(Item.getItemFromBlock(Blocks.PLANKS)), Ingredient.fromItem(Items.STICK));
+		 GameRegistry.addShapelessRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "platingwooden"), new ResourceLocation(Vars.MOD_ID + ":" + "plating"), new ItemStack(ItemInit.plating, 4), Ingredient.fromItem(Item.getItemFromBlock(Blocks.PLANKS)), Ingredient.fromItem(Items.STICK));
 		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "teleshaft"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(Item.getItemFromBlock(BlockInit.teleporter)), "PSP","SAS","PSP", 'S', Items.ENDER_PEARL, 'P', Items.STICK, 'A', Item.getItemFromBlock(BlockInit.casingWooden));
-		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "harvester"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(Item.getItemFromBlock(BlockInit.harvester)), "PGP","SAS","PHP", 'S', (Item) ItemInit.plating, 'P', Items.STICK, 'A', Item.getItemFromBlock(BlockInit.casingWooden), 'G', (Item) ItemInit.ironGear, 'H', Items.DIAMOND_HOE);
-		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "block_breaker"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(Item.getItemFromBlock(BlockInit.blockbreaker)), "PGP","SAS","PHP", 'S', (Item) ItemInit.plating, 'P', Items.STICK, 'A', Item.getItemFromBlock(BlockInit.casingWooden), 'G', (Item) ItemInit.ironGear, 'H', Items.DIAMOND_PICKAXE);
-	}
-
-	public static void removeRecipes() {
-		 ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>)ForgeRegistries.RECIPES;
-	        ArrayList<IRecipe> recipes = Lists.newArrayList(recipeRegistry.getValues());
-	        
-	        for (IRecipe r : recipes)
-            {
-                ItemStack output = r.getRecipeOutput();
-                if (output.getItem() == Item.getItemFromBlock(Blocks.PLANKS))
-                {
-            
-                }
-	}
+		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "harvester"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(Item.getItemFromBlock(BlockInit.harvester)), "PGP","SAS","PHP", 'S', (Item) ItemInit.machine_plating, 'P', Items.STICK, 'A', Item.getItemFromBlock(BlockInit.casingWooden), 'G', (Item) ItemInit.ironGear, 'H', Items.DIAMOND_HOE);
+		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "block_breaker"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(Item.getItemFromBlock(BlockInit.blockbreaker)), "PGP","SAS","PHP", 'S', (Item) ItemInit.machine_plating, 'P', Items.STICK, 'A', Item.getItemFromBlock(BlockInit.casingWooden), 'G', (Item) ItemInit.ironGear, 'H', Items.DIAMOND_PICKAXE);
+		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "machineplating"), new ResourceLocation(Vars.MOD_ID +":plating"), new ItemStack(ItemInit.machine_plating, 2), "IPI","PRP","SPS", 'I', Items.IRON_INGOT, 'P', (Item) ItemInit.plating, 'R', Items.REDSTONE, 'S', Item.getItemFromBlock(Blocks.COBBLESTONE));
+		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "fluidcollector"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(BlockInit.fluidcollector), "PBP", "QCQ", "PBP", 'Q', Item.getItemFromBlock(Blocks.PISTON), 'B', Items.BUCKET, 'C', Item.getItemFromBlock(BlockInit.casingWooden), 'P', (Item) ItemInit.machine_plating);
+		 GameRegistry.addShapedRecipe(new ResourceLocation(Vars.MOD_ID + ":" + "agriciltural_shower"), new ResourceLocation(Vars.MOD_ID + ":" + "machines"), new ItemStack(BlockInit.shower), "PBP", "QCQ", "PBP", 'Q', Items.IRON_HOE, 'B', Items.BONE, 'C', Item.getItemFromBlock(BlockInit.casingWooden), 'P', (Item) ItemInit.machine_plating);
 	}
 }

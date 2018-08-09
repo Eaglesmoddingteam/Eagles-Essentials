@@ -2,14 +2,14 @@
 {
   "modid": "eaglesess",
   "name": "Eagles Essentials",
-  "description": "The essentials you need",
+  "description": "The essentials you need. Also the base for Back To Eco",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
   "authorList": ["Tebreca","Igrek","xkjmaster_1x"],
   "credits": "nothing in here",
-  "logoFile": "",
+  "logoFile": "logo.png",
   "screenshots": [],
   "dependencies": []
 }
