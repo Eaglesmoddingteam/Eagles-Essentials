@@ -22,12 +22,12 @@ public class BlockAccumulator extends BlockBase implements ITileEntityProvider{
 	
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TileAccumulator(true);
+		return new TileAccumulator();
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return null;
+		return new TileAccumulator();
 	}
 
 }

@@ -57,5 +57,6 @@ public class ImPossibiliumSword extends ItemSword {
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	}
+	
 
 }
