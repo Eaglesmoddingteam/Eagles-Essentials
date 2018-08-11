@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 public class AccumulatorRecipeinit {
 
 	public static void register() {
-		AccumulatorRegistry.INSTANCE.addRecipe(Lists.newArrayList(new ItemStack(Blocks.DIRT)), Blocks.LAVA);
+		AccumulatorRegistry.INSTANCE.addRecipe(new ItemStack(Blocks.DIRT), Blocks.LAVA);
 	}
 	
 }

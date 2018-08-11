@@ -64,6 +64,7 @@ public class BlockInit {
 			leadBlock,
 			platinumBlock,
 			tinBlock,
+			
 			//Ores
 			cobaltOre,
 			copperOre,
@@ -71,9 +72,11 @@ public class BlockInit {
 			platinumOre,
 			tinOre,
 			zincOre,
+			
+			
+			//machines
 			//Furnace
 			//furnaceBrick,
-			//machines
 			casingWooden,
 			//Blockfactorytable,
 			fluidcollector,
@@ -83,7 +86,8 @@ public class BlockInit {
 			shower,
 			heatCell,
 			telepad,
-			squeezer
+			squeezer,
+			impossibilium_Accumulator
 			//assembler
 	};
 	

@@ -20,10 +20,7 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 	int ticks, progress = 0;
 	Block processing = null;
 
-	private final TileAccumulator[] SLAVES;
-
-	public TileAccumulatorMaster(TileEntity[] slaves) {
-		this.SLAVES = (TileAccumulator[]) slaves;
+	public TileAccumulatorMaster() {
 		System.out.println("placed a new master TE!!");
 	}
 
@@ -54,14 +51,14 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 			flag &= (b == BlockInit.impossibilium_Accumulator);
 		}
 		flag &= world.getBlockState(basePos) == Blocks.WATER.getDefaultState();
-		return flag && this.blockType == BlockInit.impossibilium_Accumulator;
+		return flag && world.getBlockState(pos).getBlock() == BlockInit.impossibilium_Accumulator;
 	}
 
 	private void execute() {
 		if (checkState()) {
 			if (isWorking()) {
 				progress++;
-				if (progress == 100) {
+				if (progress == 2000) {
 					world.setBlockState(pos.up(), processing.getDefaultState());
 					processing = null;
 					progress = 0;
@@ -69,14 +66,16 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 			} else {
 				ArrayList<ItemStack> items = new ArrayList();
 				world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.up()))//
-				.forEach(item -> {
-					items.add(item.getItem());
-				});
-				Block b = AccumulatorRegistry.getOutcome(items);
-				if(b != null) {
-					System.out.println("Staring processing the block: " + b.toString());
-					processing = b;
-					progress++;
+						.forEach(item -> {
+							items.add(item.getItem());
+						});
+				if (!items.isEmpty()) {
+					Block b = AccumulatorRegistry.getOutcome(items.get(0));
+					if (b != null) {
+						System.out.println("Staring processing the block: " + b.toString());
+						processing = b;
+						progress++;
+					}
 				}
 			}
 		}

@@ -45,7 +45,7 @@ public class TileAccumulator extends TileEntity implements ITickable {
 						}
 					}
 					if (flag2) {
-						TileAccumulatorMaster master = new TileAccumulatorMaster(TEs);
+						TileAccumulatorMaster master = new TileAccumulatorMaster();
 						world.setTileEntity(pos, master);
 						this.markDirty();
 					}

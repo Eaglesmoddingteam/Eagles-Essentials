@@ -1,24 +1,26 @@
 package btf.util.registry;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
+import btf.util.registry.objects.AccumulatorRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 public class AccumulatorRegistry {
-	private HashMap<ArrayList<ItemStack>,Block> RECIPES = new HashMap<>(100);
+	public List<AccumulatorRecipe> recipes = new ArrayList<>();
 	public static AccumulatorRegistry INSTANCE = new AccumulatorRegistry();
 
-	public void addRecipe(ArrayList<ItemStack> input, Block output){
-		this.RECIPES.put(input, output);
+	public void addRecipe(ItemStack input, Block output){
+		recipes.add(new AccumulatorRecipe(input, output));
 	}
 	
-	public static Block getOutcome(ArrayList<ItemStack> input){
-		if(INSTANCE.RECIPES.containsKey(input)) {
-			return INSTANCE.RECIPES.get(input);
-		} else {
-			return null;
+	public static Block getOutcome(ItemStack input){
+		for(AccumulatorRecipe recipe : INSTANCE.recipes) {
+			if(recipe.canRun(input)) {
+				return recipe.getOutput();
+			}
 		}
+		return null;
 	}
 }
