@@ -7,6 +7,7 @@ import btf.objects.blocks.tiles.TileAccumulator;
 import btf.objects.blocks.tiles.TileAccumulatorMaster;
 import btf.objects.blocks.tiles.TileBlockBreaker;
 import btf.objects.blocks.tiles.TileFluidCollector;
+import btf.objects.blocks.tiles.TileFluidHopper;
 import btf.objects.blocks.tiles.TileFurnaceMultiBlock;
 import btf.objects.blocks.tiles.TileHarvesterTicker;
 import btf.objects.blocks.tiles.TileHeatCell;
@@ -42,6 +43,7 @@ public class ServerProxy {
 		GameRegistry.registerTileEntity(TileSqueezer.class, Vars.MOD_ID + ":tile_squeezer");
 		GameRegistry.registerTileEntity(TileAccumulatorMaster.class, Vars.MOD_ID + ":tile_accumulator_master");
 		GameRegistry.registerTileEntity(TileAccumulator.class, Vars.MOD_ID + ":tile_accumulator_slave");
+		GameRegistry.registerTileEntity(TileFluidHopper.class, Vars.MOD_ID + ":tile_fluid_hopper");
 	}
 
 	public void init(FMLInitializationEvent e) {
