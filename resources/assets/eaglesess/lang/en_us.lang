@@ -59,3 +59,4 @@ tile.fluid_collector.name=Liquid Collector
 tile.telepad.name=Teleport Receiver
 tile.heatcell.name=Heat Cell
 tile.squeezer.name=Squeezer
+tile.accumulator_impossibilium.name=Impossibilium Accumulator

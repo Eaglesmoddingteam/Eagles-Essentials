@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -24,7 +25,19 @@ public class NBTHelper {
 		if(o instanceof BlockPos) {
 			return toNBT((BlockPos) o);
 		}
+		if(o instanceof ItemStack) {
+			return toNBT((ItemStack) o);
+		}
 		return null;
+	}
+	
+	private static NBTBase toNBT(ItemStack stack) {
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setTag("item", toNBT(stack.getItem()));
+		compound.setInteger("count", stack.getCount());
+		byte type = 3;
+		compound.setByte("type", type);
+		return compound;
 	}
 	
 	private static NBTBase toNBT(Item i) {
@@ -69,6 +82,8 @@ public class NBTHelper {
 		case 2:
 			int[] pos = compound.getIntArray("pos");
 			return new BlockPos(pos[0], pos[1], pos[2]);
+		case 3:
+			return new ItemStack((Item)(fromNBT((NBTTagCompound) compound.getTag("item"))), compound.getInteger("count"));
 		default:
 			return null;
 		}

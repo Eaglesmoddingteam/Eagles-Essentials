@@ -19,6 +19,8 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 
 	int ticks, progress = 0;
 	Block processing = null;
+	boolean checkItems;
+	ItemStack ingrediënts;
 
 	public TileAccumulatorMaster() {
 		System.out.println("placed a new master TE!!");
@@ -51,6 +53,15 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 			flag &= (b == BlockInit.impossibilium_Accumulator);
 		}
 		flag &= world.getBlockState(basePos) == Blocks.WATER.getDefaultState();
+		if(checkItems) {
+			ArrayList<ItemStack> items = new ArrayList();
+			world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.up()))//
+					.forEach(item -> {
+						items.add(item.getItem());
+					});
+			boolean flag2 = items.isEmpty();
+			flag &= flag2 ? items.get(0) == ingrediënts : false;
+		}
 		return flag && world.getBlockState(pos).getBlock() == BlockInit.impossibilium_Accumulator;
 	}
 
@@ -61,6 +72,15 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 				if (progress == 2000) {
 					world.setBlockState(pos.up(), processing.getDefaultState());
 					processing = null;
+					checkItems = false;
+					
+					world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.up()))//
+							.forEach(item -> {
+								if(item.getItem() == ingrediënts) {
+									item.setDead();
+								}
+							});
+					ingrediënts = null;
 					progress = 0;
 				}
 			} else {
@@ -72,8 +92,10 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 				if (!items.isEmpty()) {
 					Block b = AccumulatorRegistry.getOutcome(items.get(0));
 					if (b != null) {
-						System.out.println("Staring processing the block: " + b.toString());
+						System.out.println("Starting processing the block: " + b.toString());
 						processing = b;
+						ingrediënts = items.get(0);
+						checkItems = true;
 						progress++;
 					}
 				}
@@ -87,6 +109,7 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 			compound.setInteger("progress", this.progress);
 			compound.setTag("processing", NBTHelper.toNBT(processing));
 			compound.setBoolean("working", true);
+			compound.setTag("ingredients", NBTHelper.toNBT(ingrediënts));
 		} else {
 			compound.setBoolean("working", false);
 		}
@@ -99,7 +122,10 @@ public class TileAccumulatorMaster extends TileEntity implements ITickable {
 		if (flag) {
 			this.processing = (Block) NBTHelper.fromNBT((NBTTagCompound) compound.getTag("processing"));
 			this.progress = compound.getInteger("progress");
+			this.checkItems = true;
+			this.ingrediënts = (ItemStack) NBTHelper.fromNBT((NBTTagCompound) compound.getTag("ingredients"));
 		}
+		this.checkItems = false;
 		super.readFromNBT(compound);
 	}
 

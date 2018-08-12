@@ -33,7 +33,7 @@ public class TileAccumulator extends TileEntity implements ITickable {
 							world.getTileEntity(basePos.west()), //
 							world.getTileEntity(basePos.north()), //
 							world.getTileEntity(basePos.east()), //
-							world.getTileEntity(basePos.south())//
+							world.getTileEntity(basePos.south()) //
 					};
 					boolean flag2 = true;
 					for (TileEntity te : TEs) {
@@ -57,13 +57,13 @@ public class TileAccumulator extends TileEntity implements ITickable {
 	public void setHasMaster(boolean hasMaster) {
 		this.hasMaster = hasMaster;
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound.setBoolean("hasmaster", this.hasMaster);
 		return super.writeToNBT(compound);
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		this.hasMaster = compound.getBoolean("hasmaster");
