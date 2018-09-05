@@ -1,0 +1,10 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "eaglesess:burned_clay"
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}]
+	}
+}

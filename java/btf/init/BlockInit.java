@@ -30,6 +30,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class BlockInit {
 
 	public static BlockBase bronzeBlock = new BlockBase("bronze_block", Material.IRON, Main.ingotsTab);
+	public static BlockBase clayBurned = new BlockBase("burned_clay", Material.CLAY, Main.ingotsTab, 1);
 	public static BlockBase brassBlock = new BlockBase("brass_block", Material.IRON, Main.ingotsTab);
 	public static BlockBase cobaltBlock = new BlockBase("cobalt_block", Material.IRON, Main.ingotsTab);
 	public static BlockBase copperBlock = new BlockBase("copper_block", Material.IRON, Main.ingotsTab);
@@ -67,7 +68,7 @@ public class BlockInit {
 
 	public static Block[] blocks = {
 			// Metal Blocks
-			bronzeBlock, brassBlock, cobaltBlock, copperBlock, leadBlock, platinumBlock, tinBlock,
+			bronzeBlock, brassBlock, cobaltBlock, copperBlock, leadBlock, platinumBlock, tinBlock, clayBurned,
 
 			// Ores
 			cobaltOre, copperOre, leadOre, platinumOre, tinOre, zincOre,
@@ -107,6 +108,7 @@ public class BlockInit {
 		OreDictionary.registerOre("blockLead", new ItemStack(leadBlock, 1, 0));
 		OreDictionary.registerOre("blockPlatinum", new ItemStack(platinumBlock, 1, 0));
 		OreDictionary.registerOre("blockTin", new ItemStack(tinBlock, 1, 0));
+		OreDictionary.registerOre("blockClayBurned", clayBurned);
 		// Ores
 		OreDictionary.registerOre("oreCobalt", new ItemStack(cobaltOre, 1, 0));
 		OreDictionary.registerOre("oreCopper", new ItemStack(copperOre, 1, 0));
