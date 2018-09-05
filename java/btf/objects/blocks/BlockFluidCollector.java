@@ -83,7 +83,7 @@ public class BlockFluidCollector extends BlockBase implements ITileEntityProvide
 	@Override
 	public void neighborChanged(IBlockState stateIn, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		if (!worldIn.isRemote)
-			if (worldIn.isBlockPowered(pos)) {
+			if (worldIn.isBlockPowered(pos) && worldIn.isBlockPowered(fromPos)) {
 				((TileFluidCollector) worldIn.getTileEntity(pos)).activate();
 			}
 	}

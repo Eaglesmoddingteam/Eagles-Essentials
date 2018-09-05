@@ -44,6 +44,7 @@ public class BlockInit {
 	public static BlockBase zincOre = new BlockBase("zinc_ore", Material.ROCK, Main.ingotsTab, 2);
 	public static BlockBase casingBedrockium = new BlockBase("casing_bedrock", Material.ROCK, Main.blocksTab, 3);
 	public static BlockBase casingEnder = new BlockBase("casing_ender", Material.ROCK, Main.blocksTab, 3);
+	public static BlockBase casingMetallic = new BlockBase("casing_metallic", Material.ROCK, Main.blocksTab, 3);
 	public static BlockFurnaceBrick furnaceBrick = new BlockFurnaceBrick("furnace_brick", Material.ROCK,
 			Main.blocksTab);
 	public static Machine casingWooden = new Machine("wooden_casing", Material.WOOD, Main.blocksTab,
@@ -71,7 +72,7 @@ public class BlockInit {
 			cobaltOre, copperOre, leadOre, platinumOre, tinOre, zincOre,
 
 			// machines
-			casingWooden, casingBedrockium, casingEnder, fluidcollector, harvester, teleporter, blockbreaker, shower,
+			casingWooden, casingBedrockium, casingEnder, casingMetallic, fluidcollector, harvester, teleporter, blockbreaker, shower,
 			heatCell, telepad, squeezer, impossibilium_Accumulator //
 			};
 

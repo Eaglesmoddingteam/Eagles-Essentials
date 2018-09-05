@@ -1,0 +1,10 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "eaglesess:casing_metallic"
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}]
+	}
+}
