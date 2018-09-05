@@ -60,3 +60,5 @@ tile.telepad.name=Teleport Receiver
 tile.heatcell.name=Heat Cell
 tile.squeezer.name=Squeezer
 tile.accumulator_impossibilium.name=Impossibilium Accumulator
+tile.casing_bedrock.name=Bedrockium casing
+tile.casing_ender.name=Ender casing

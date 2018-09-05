@@ -10,8 +10,9 @@ public class BlockStateVariantHeater implements IBlockStateVariantEntry {
 
 	List<Type> TYPES = new ArrayList();
 
-	public void add(Type type){
+	public int add(Type type){
 		TYPES.add(type);
+		return TYPES.lastIndexOf(type);
 	}
 
 	public void remove(Type type) {

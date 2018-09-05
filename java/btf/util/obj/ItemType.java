@@ -9,7 +9,7 @@ public abstract class ItemType {
 	
 	public abstract Optional<ArrayList<ItemStack>> getAcceptedItems();
 	
-	abstract boolean includesItem(ItemStack item);
+	public abstract boolean includesItem(ItemStack item);
 	
 	@Override
 	public abstract String toString();
