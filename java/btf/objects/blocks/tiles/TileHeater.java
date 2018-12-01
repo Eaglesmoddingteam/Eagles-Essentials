@@ -1,13 +1,16 @@
 package btf.objects.blocks.tiles;
 
-import btf.util.obj.HeaterType;
-import net.minecraft.item.ItemStack;
+import static btf.util.helpers.ArrayHelper.includes;
+
+import javax.annotation.Nullable;
+
+import btf.objects.blocks.tiles.capability.EnergyStorageGenerator;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -18,61 +21,77 @@ public class TileHeater extends TileEntity implements ITickable {
 	Capability<IItemHandler> ITEM_HANDLER = CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	Capability<IEnergyStorage> FE = CapabilityEnergy.ENERGY;
 	IItemHandler inventory = new ItemStackHandler(1);
-	EnergyStorage energy;
-	HeaterType type;
-	int ticks = 0;
-	int burntimeLeft, genRate = 0;
-	
-	public TileHeater(HeaterType type) {
-		this.type = type;
-		this.energy = new EnergyStorage(4000, 0, type.getBurnTime(), 0);
+	EnergyStorageGenerator energy;
+	int burntimeLeft = 0;
+	int genRate;
+	int maxout;
+	private Item[] burnables;
+
+	public TileHeater(int maxout, int genRate, Item... burnables) {
+		this.energy = new EnergyStorageGenerator(4000, 0, maxout, 0);
+		this.maxout = maxout;
+		this.genRate = genRate;
+		this.burnables = burnables;
 	}
 
 	@Override
 	public void update() {
-		if(canBurn()) {
-			burntimeLeft--;
-			this.energy.receiveEnergy(genRate, false);
+		if (isBurning()) {
+			if (canBurn()) {
+				this.energy.recieveInternal(genRate, false);
+			}
 		}
-		ticks++;
-		if(ticks == 2) {
-			ticks = 0;
-			run();
+		tryBurn();
+		if (!energy.isEmpty()) {
+			exportEnergy(energy.getEnergyStored());
 		}
 	}
-	
+
+	private void exportEnergy(int energyStored) {
+		int out = 0;
+		for (EnumFacing face : EnumFacing.VALUES) {
+			TileEntity tile = world.getTileEntity(pos.offset(face, 1));
+			if (tile != null) {
+				if (tile.hasCapability(FE, face.getOpposite()) && out < maxout) {
+					IEnergyStorage storage = tile.getCapability(FE, face.getOpposite());
+					int maxOut = energy.extractEnergy(maxout - out, true);
+					int maxAccept = storage.receiveEnergy(maxOut, false);
+					out += energy.extractEnergy(maxAccept, false);
+				}
+			}
+		}
+	}
+
 	private boolean canBurn() {
-		return burntimeLeft > 0 && energy.getEnergyStored()  < energy.getMaxEnergyStored();
+		return this.energy.getEnergyStored() + genRate < 4000;
 	}
-	
+
+	private void tryBurn() {
+		if (!inventory.getStackInSlot(0).isEmpty()) {
+			if (includes(burnables, inventory.getStackInSlot(0).getItem())) {
+				this.burntimeLeft = 1000;
+			}
+		}
+	}
+
+	private boolean isBurning() {
+		return burntimeLeft > 0;
+	}
+
+	@Nullable
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == ITEM_HANDLER) {
+		if (capability == ITEM_HANDLER) {
 			return (T) this.inventory;
-		} else if(capability == FE){
+		} else if (capability == FE) {
 			return (T) this.energy;
 		}
 		return null;
 	}
-	
+
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		return capability == ITEM_HANDLER || capability == FE;
 	}
-	
-	private void run() {
-		ItemStack stack = inventory.extractItem(0, 1, true);
-		boolean flag = stack.isEmpty();
-		if(!flag) {
-			int totalburntime = this.type.getBurnTimeForItem(stack);
-			if(totalburntime > 0) {
-				burntimeLeft = totalburntime;
-				genRate = type.getGenSpeed();
-				inventory.extractItem(0, 1, false);
-			}
-		}
-	}
-	
-	
 
 }

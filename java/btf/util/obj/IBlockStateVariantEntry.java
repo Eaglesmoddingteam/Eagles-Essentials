@@ -1,7 +1,5 @@
 package btf.util.obj;
 
-import net.minecraft.item.ItemStack;
-
 public interface IBlockStateVariantEntry {
 
 	public Type[] getTypes();

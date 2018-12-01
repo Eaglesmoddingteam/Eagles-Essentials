@@ -52,7 +52,8 @@ public class ItemTeleportingWand extends ItemBase {
 			} else {
 				player.sendStatusMessage(new TextComponentString(//
 						new StringBuilder("No teleportation reciever set on the colour ")
-								.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase()).toString()),
+								.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase())
+								.toString()),
 						true);
 			}
 		}
@@ -89,7 +90,8 @@ public class ItemTeleportingWand extends ItemBase {
 			} else {
 				playerIn.sendStatusMessage(new TextComponentString(//
 						new StringBuilder("No teleportation reciever set on the colour ")
-								.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase()).toString()),
+								.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase())
+								.toString()),
 						true);
 			}
 		}
