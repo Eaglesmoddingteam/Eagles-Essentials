@@ -42,7 +42,7 @@ public class ItemInit {
 	public static ItemBase woodGear = new ItemBase("wooden_gear", Main.itemstab);
 	public static ItemBase stoneGear = new ItemBase("stone_gear", Main.itemstab);
 	//book
-	public static Item book = new ItemBook("manual_book", 1, Main.itemstab);
+	//public static Item book = new ItemBook("manual_book", 1, Main.itemstab);
 	//Plating and other crafting materials
 	public static ItemBase plating = new ItemBase("wooden_plating", Main.itemstab);
 	public static ItemBase machine_plating = new ItemBase("machine_plating", 64, Main.itemstab);
