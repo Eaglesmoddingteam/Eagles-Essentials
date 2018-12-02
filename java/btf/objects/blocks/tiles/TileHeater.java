@@ -1,27 +1,31 @@
 package btf.objects.blocks.tiles;
 
 import static btf.util.helpers.ArrayHelper.includes;
+import static btf.util.helpers.NBTHelper.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
-import btf.objects.blocks.tiles.capability.EnergyStorageGenerator;
 import btf.util.energy.heat.CapabilityHeat;
 import btf.util.energy.heat.HeatStorage;
 import btf.util.energy.heat.IHeatStorage;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileHeater extends TileEntity implements ITickable {
 
-	Capability<IItemHandler> ITEM_HANDLER = CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+	static public Capability<IItemHandler> ITEM_HANDLER = CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	Capability<IHeatStorage> HEAT = CapabilityHeat.HEAT_CAPABILITY;
 	IItemHandler inventory = new ItemStackHandler(1);
 	HeatStorage heat;
@@ -30,6 +34,10 @@ public class TileHeater extends TileEntity implements ITickable {
 	int maxout;
 	private Item[] burnables;
 
+	public TileHeater() {
+		
+	}
+	
 	public TileHeater(int maxout, int genRate, Item... burnables) {
 		this.heat = new HeatStorage(0, maxout, 4000);
 		this.maxout = maxout;
@@ -96,6 +104,53 @@ public class TileHeater extends TileEntity implements ITickable {
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		return capability == ITEM_HANDLER || capability == HEAT;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setIntArray("data", genDataArr());
+		compound.setTag("burnables", genBurnablesTag());
+		compound.setTag("heat", HEAT.writeNBT(heat, EnumFacing.DOWN));
+		compound.setTag("inv", ITEM_HANDLER.writeNBT(inventory, EnumFacing.DOWN));
+		return super.writeToNBT(compound);
+	}
+
+	private NBTBase genBurnablesTag() {
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setInteger("length", burnables.length);
+		int amount = 0;
+		for (Item i : burnables) {
+			compound.setTag(String.format("item_%d", amount++), toNBT(i));
+		}
+		return compound;
+	}
+
+	private int[] genDataArr() {
+		return new int[] { maxout, genRate, burntimeLeft };
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		readDataArr(compound.getIntArray("data"));
+		readBurnablesTag(compound.getTag("burnables"));
+		heat = new HeatStorage(0, maxout, 4000);
+		HEAT.readNBT(heat, EnumFacing.DOWN, compound.getTag("heat"));
+		ITEM_HANDLER.readNBT(inventory, EnumFacing.DOWN, compound.getTag("inv"));
+		super.readFromNBT(compound);
+	}
+
+	private void readBurnablesTag(NBTBase tag) {
+		NBTTagCompound compound = (NBTTagCompound) tag;
+		List<Item> items = new ArrayList();
+		for (int i = 0; i < compound.getInteger("length"); i++) {
+			items.add((Item) fromNBT((NBTTagCompound) compound.getTag(String.format("item_%d", i))));
+		}
+	}
+
+	private void readDataArr(int[] arr) {
+		this.maxout = arr[0];
+		this.genRate = arr[1];
+		this.burntimeLeft = arr[2];
 	}
 
 }

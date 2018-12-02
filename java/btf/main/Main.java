@@ -6,6 +6,7 @@ import btf.init.BlockInit;
 import btf.init.ItemInit;
 import btf.proxy.ServerProxy;
 import btf.util.energy.CapabilityGrowthPotential;
+import btf.util.energy.heat.CapabilityHeat;
 import btf.util.furnace.MainHandler;
 import btf.util.handlers.CraftingHandler;
 import btf.util.handlers.OresHandler;
@@ -57,6 +58,7 @@ public static MainHandler furnaceHelper = new MainHandler();
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
 		CapabilityGrowthPotential.register();
+		CapabilityHeat.register();
 		AccumulatorRecipeinit.register();
 	}
 	

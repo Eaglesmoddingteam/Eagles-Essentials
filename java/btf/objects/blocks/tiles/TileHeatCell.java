@@ -5,6 +5,7 @@ import btf.util.energy.heat.CapabilityHeat;
 import btf.util.energy.heat.HeatStorage;
 import btf.util.energy.heat.IHeatStorage;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -57,11 +58,22 @@ public class TileHeatCell extends TileEntity implements ITickable {
 	}
 	
 	private boolean canburn(BlockPos pos) {
-		return (!world.isAirBlock(pos.down(1))) || world.isAirBlock(pos);
+		return (!world.isAirBlock(pos.down(1))) && world.isAirBlock(pos);
 	}
 
 	public int getHeat() {
-		// TODO Auto-generated method stub
 		return HEAT_STORAGE.getHeatstored();
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		
+		return super.writeToNBT(compound);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		// TODO Auto-generated method stub
+		super.readFromNBT(compound);
 	}
 }

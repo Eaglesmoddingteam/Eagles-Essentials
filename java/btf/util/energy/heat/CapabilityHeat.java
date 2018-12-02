@@ -18,13 +18,20 @@ public class CapabilityHeat {
 
 			@Override
 			public NBTBase writeNBT(Capability<IHeatStorage> capability, IHeatStorage instance, EnumFacing side) {
-				return null;
+				NBTTagCompound compound = new NBTTagCompound();
+				compound.setInteger("heat", instance.getHeatstored());
+				return compound;
 			}
 
 			@Override
 			public void readNBT(Capability<IHeatStorage> capability, IHeatStorage instance, EnumFacing side,
 					NBTBase nbt) {
-				
+				if(!(instance instanceof HeatStorage))
+					return;
+				NBTTagCompound tagCompound = (NBTTagCompound) nbt;
+				HeatStorage storage = (HeatStorage) instance;
+				int toAdd = tagCompound.getInteger("heat") - storage.getHeatstored();
+				storage.recieveInternal(toAdd, false);
 			}
 		}, () -> new HeatStorage(20, 20, 1000));
 	}
