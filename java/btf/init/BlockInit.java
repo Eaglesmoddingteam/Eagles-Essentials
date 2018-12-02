@@ -6,12 +6,14 @@ import btf.objects.blocks.BlockBase;
 import btf.objects.blocks.BlockFluidCollector;
 import btf.objects.blocks.BlockFurnaceBrick;
 import btf.objects.blocks.BlockHeatCell;
+import btf.objects.blocks.BlockHeaterBase;
 import btf.objects.blocks.BlockSqueezer;
 import btf.objects.blocks.Machine;
 import btf.objects.blocks.MachineShower;
 import btf.util.handlers.MachineHandler.MachineTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -56,6 +58,8 @@ public class BlockInit {
 	public static BlockAccumulator impossibilium_Accumulator = new BlockAccumulator();
 	public static BlockBase telepad = new BlockBase("telepad", Material.ROCK, Main.blocksTab, 2);
 	public static BlockSqueezer squeezer = new BlockSqueezer();
+	public static BlockHeaterBase heater_wood = BlockHeaterBase.withArgs("heatertest", 200, 1200,
+			Item.getItemFromBlock(Blocks.PLANKS));
 
 	public static Block[] blocks = {
 			// Metal Blocks
@@ -65,9 +69,9 @@ public class BlockInit {
 			cobaltOre, copperOre, leadOre, platinumOre, tinOre, zincOre,
 
 			// machines
-			casingWooden, casingBedrockium, casingEnder, casingMetallic, casingCeramic, fluidcollector, harvester, teleporter, blockbreaker, shower,
-			heatCell, telepad, squeezer, impossibilium_Accumulator //
-			};
+			casingWooden, casingBedrockium, casingEnder, casingMetallic, casingCeramic, fluidcollector, harvester,
+			teleporter, blockbreaker, shower, heatCell, telepad, squeezer, impossibilium_Accumulator, heater_wood //
+	};
 
 	public static void changeblockdata() {
 		fluidcollector.setLightOpacity(2);

@@ -59,4 +59,9 @@ public class TileHeatCell extends TileEntity implements ITickable {
 	private boolean canburn(BlockPos pos) {
 		return (!world.isAirBlock(pos.down(1))) || world.isAirBlock(pos);
 	}
+
+	public int getHeat() {
+		// TODO Auto-generated method stub
+		return HEAT_STORAGE.getHeatstored();
+	}
 }

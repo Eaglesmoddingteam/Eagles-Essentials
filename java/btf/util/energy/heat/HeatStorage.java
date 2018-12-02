@@ -77,4 +77,15 @@ public class HeatStorage implements IHeatStorage{
 				this.CAN_RECEIVE ? 1 : 0
 		});
 	}
+
+	public int recieveInternal(int genRate, boolean simulate) {
+		int recieve = Math.min(genRate, (CAPACITY - HEAT));
+		if(!simulate)
+			HEAT+=recieve;
+		return recieve;
+	}
+
+	public boolean isEmpty() {
+		return HEAT <= 0;
+	}
 }

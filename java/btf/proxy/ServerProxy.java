@@ -9,6 +9,7 @@ import btf.objects.blocks.tiles.TileFluidHopper;
 import btf.objects.blocks.tiles.TileFurnaceMultiBlock;
 import btf.objects.blocks.tiles.TileHarvesterTicker;
 import btf.objects.blocks.tiles.TileHeatCell;
+import btf.objects.blocks.tiles.TileHeater;
 import btf.objects.blocks.tiles.TileShower;
 import btf.objects.blocks.tiles.TileSqueezer;
 import btf.util.handlers.GuiHandler;
@@ -40,8 +41,9 @@ public class ServerProxy {
 				new ResourceLocation(Vars.MOD_ID, "tile_fluid_collector"));
 		GameRegistry.registerTileEntity(TileHeatCell.class, new ResourceLocation(Vars.MOD_ID, "tile_heatcell"));
 		GameRegistry.registerTileEntity(TileSqueezer.class, new ResourceLocation(Vars.MOD_ID, "tile_squeezer"));
-		GameRegistry.registerTileEntity(TileAccumulator.class, new ResourceLocation(Vars.MOD_ID, ":tile_accumulator"));
-		GameRegistry.registerTileEntity(TileFluidHopper.class, new ResourceLocation(Vars.MOD_ID, ":tile_fluid_hopper"));
+		GameRegistry.registerTileEntity(TileAccumulator.class, new ResourceLocation(Vars.MOD_ID, "tile_accumulator"));
+		GameRegistry.registerTileEntity(TileFluidHopper.class, new ResourceLocation(Vars.MOD_ID, "tile_fluid_hopper"));
+		GameRegistry.registerTileEntity(TileHeater.class, new ResourceLocation(Vars.MOD_ID, "tile_heater_items"));
 	}
 
 	public void init(FMLInitializationEvent e) {
