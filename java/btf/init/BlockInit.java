@@ -6,14 +6,16 @@ import btf.objects.blocks.BlockBase;
 import btf.objects.blocks.BlockFluidCollector;
 import btf.objects.blocks.BlockFurnaceBrick;
 import btf.objects.blocks.BlockHeatCell;
-import btf.objects.blocks.BlockHeaterBase;
 import btf.objects.blocks.BlockSqueezer;
 import btf.objects.blocks.Machine;
 import btf.objects.blocks.MachineShower;
+import btf.objects.blocks.tiles.heaters.HeaterBlazeing;
+import btf.objects.blocks.tiles.heaters.HeaterEnder;
+import btf.objects.blocks.tiles.heaters.HeaterFluid;
 import btf.util.handlers.MachineHandler.MachineTypes;
+import btf.util.reflect.AddFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -22,13 +24,20 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlockInit {
 
+	@AddFluid
 	public static BlockBase bronzeBlock = new BlockBase("bronze_block", Material.IRON, Main.ingotsTab);
 	public static BlockBase clayBurned = new BlockBase("burned_clay", Material.CLAY, Main.ingotsTab, 1);
+	@AddFluid
 	public static BlockBase brassBlock = new BlockBase("brass_block", Material.IRON, Main.ingotsTab);
+	@AddFluid
 	public static BlockBase cobaltBlock = new BlockBase("cobalt_block", Material.IRON, Main.ingotsTab);
+	@AddFluid
 	public static BlockBase copperBlock = new BlockBase("copper_block", Material.IRON, Main.ingotsTab);
+	@AddFluid
 	public static BlockBase leadBlock = new BlockBase("lead_block", Material.IRON, Main.ingotsTab);
+	@AddFluid
 	public static BlockBase platinumBlock = new BlockBase("platinum_block", Material.IRON, Main.ingotsTab);
+	@AddFluid
 	public static BlockBase tinBlock = new BlockBase("tin_block", Material.IRON, Main.ingotsTab);
 	public static BlockBase cobaltOre = new BlockBase("cobalt_ore", Material.ROCK, Main.ingotsTab, 2);
 	public static BlockBase copperOre = new BlockBase("copper_ore", Material.ROCK, Main.ingotsTab, 2);
@@ -58,10 +67,9 @@ public class BlockInit {
 	public static BlockAccumulator impossibilium_Accumulator = new BlockAccumulator();
 	public static BlockBase telepad = new BlockBase("telepad", Material.ROCK, Main.blocksTab, 2);
 	public static BlockSqueezer squeezer = new BlockSqueezer();
-	public static BlockHeaterBase heater_wood = BlockHeaterBase.withArgs("heatertest", 200, 1200,
-			Item.getItemFromBlock(Blocks.PLANKS));
 
 	public static Block[] blocks = {
+
 			// Metal Blocks
 			bronzeBlock, brassBlock, cobaltBlock, copperBlock, leadBlock, platinumBlock, tinBlock, clayBurned,
 
@@ -70,8 +78,8 @@ public class BlockInit {
 
 			// machines
 			casingWooden, casingBedrockium, casingEnder, casingMetallic, casingCeramic, fluidcollector, harvester,
-			teleporter, blockbreaker, shower, heatCell, telepad, squeezer, impossibilium_Accumulator, heater_wood //
-	};
+			teleporter, blockbreaker, shower, heatCell, telepad, squeezer, impossibilium_Accumulator,
+			HeaterBlazeing.BLOCK, HeaterEnder.BLOCK, HeaterFluid.BLOCK };
 
 	public static void changeblockdata() {
 		fluidcollector.setLightOpacity(2);

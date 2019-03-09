@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+            "bottom": "eaglesess:machines/blazeing_heater_bottom",
+            "top": "eaglesess:machines/blazeing_heater_top",
+            "side": "eaglesess:machines/blazeing_heater"
+		},
+		"model": "half_slab"
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}]
+	}
+}

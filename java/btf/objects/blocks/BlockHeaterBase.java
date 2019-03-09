@@ -1,39 +1,64 @@
 package btf.objects.blocks;
 
-import javax.annotation.Nonnull;
-
 import btf.main.Main;
-import btf.objects.blocks.tiles.TileHeater;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHeaterBase extends BlockBase implements ITileEntityProvider {
+public abstract class BlockHeaterBase extends BlockBase implements ITileEntityProvider {
 
-	public TEManager manager;
+	public static final AxisAlignedBB SLAB_AABB = new AxisAlignedBB(0d, 0d, 0d, 1d, 0.5d, 1d);
 
-	public BlockHeaterBase(String name, @Nonnull TEManager tile) {
+	public BlockHeaterBase(String name) {
 		super(name, Material.ROCK, Main.blocksTab, 2);
-		this.manager = tile;
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return manager.newTE();
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+		return SLAB_AABB;
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return SLAB_AABB;
 	}
 
 	@Override
-	public boolean hasTileEntity() {
+	public boolean isFullBlock(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
 
-	private interface TEManager {
-		public TileEntity newTE();
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.TRANSLUCENT;
 	}
 
-	public static BlockHeaterBase withArgs(String name, int maxTransfer, int genRate, Item... burnables) {
-		return new BlockHeaterBase(name, () -> new TileHeater(maxTransfer, genRate, burnables));
+	@Override
+	public float getAmbientOcclusionLightValue(IBlockState state) {
+		return 1f;
 	}
+
 }

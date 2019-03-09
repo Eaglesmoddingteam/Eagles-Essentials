@@ -1,7 +1,10 @@
 package btf.objects.items;
 
+import java.util.List;
+
 import btf.init.BlockInit;
 import btf.main.Main;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
@@ -25,7 +28,6 @@ public class ItemTeleportingWand extends ItemBase {
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (!player.isSneaking()) {
-
 			if (!stack.hasTagCompound()) {
 				stack.setTagCompound(new NBTTagCompound());
 				stack.getTagCompound().setInteger("colour", 0);
@@ -95,7 +97,16 @@ public class ItemTeleportingWand extends ItemBase {
 						true);
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+		return new ActionResult<>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("colour")) {
+			int colour = stack.getTagCompound().getInteger("colour");
+			tooltip.add("currently set to: " + EnumDyeColor.byMetadata(colour).toString().toLowerCase());
+		}
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	private boolean testTeleporter(BlockPos blockPos, World w) {

@@ -1,7 +1,5 @@
 package btf.init;
 
-import com.google.common.collect.Lists;
-
 import btf.util.registry.AccumulatorRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

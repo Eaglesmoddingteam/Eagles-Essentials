@@ -1,6 +1,5 @@
 package btf.util.energy.heat;
 
-import btf.util.energy.GrowthPotentialStorage;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -9,10 +8,14 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class CapabilityHeat {
-	
+
+	public static Capability<IHeatStorage> HEAT_CAPABILITY = null;
+
 	@CapabilityInject(IHeatStorage.class)
-    public static Capability<IHeatStorage> HEAT_CAPABILITY = null;
-	
+	private static void capRegistered(Capability<IHeatStorage> cap) {
+		HEAT_CAPABILITY = cap;
+	}
+
 	public static void register() {
 		CapabilityManager.INSTANCE.register(IHeatStorage.class, new Capability.IStorage<IHeatStorage>() {
 
@@ -26,7 +29,7 @@ public class CapabilityHeat {
 			@Override
 			public void readNBT(Capability<IHeatStorage> capability, IHeatStorage instance, EnumFacing side,
 					NBTBase nbt) {
-				if(!(instance instanceof HeatStorage))
+				if (!(instance instanceof HeatStorage))
 					return;
 				NBTTagCompound tagCompound = (NBTTagCompound) nbt;
 				HeatStorage storage = (HeatStorage) instance;

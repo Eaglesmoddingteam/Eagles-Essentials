@@ -1,6 +1,5 @@
 package btf.objects.blocks.tiles;
 
-import btf.main.Main;
 import btf.util.energy.heat.CapabilityHeat;
 import btf.util.energy.heat.HeatStorage;
 import btf.util.energy.heat.IHeatStorage;
@@ -17,8 +16,8 @@ public class TileHeatCell extends TileEntity implements ITickable {
 	int tick = 0;
 	BlockPos[] surroundings;
 	boolean initialized = false;
-	Capability<IHeatStorage> HEAT_CAPABILITY = CapabilityHeat.HEAT_CAPABILITY;
-	HeatStorage HEAT_STORAGE = new HeatStorage(20, 20, 2000);
+	static final Capability<IHeatStorage> HEAT_CAPABILITY = CapabilityHeat.HEAT_CAPABILITY;
+	final HeatStorage HEAT_STORAGE = new HeatStorage(20, 20, 2000);
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -43,20 +42,19 @@ public class TileHeatCell extends TileEntity implements ITickable {
 
 		tick++;
 		if ((tick % 10) == 0) {
-			if(this.HEAT_STORAGE.getHeatstored() > 0)
-			for (BlockPos pos : surroundings) {
-				if (canburn(pos))
-					world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+			if (this.HEAT_STORAGE.getHeatstored() > 0) {
+				for (BlockPos pos : surroundings) {
+					if (canburn(pos))
+						world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+				}
 			}
 		}
 
 		if (tick >= 100) {
 			tick = 0;
-			System.out.println("The HeatCell at" + pos.toString() + "has decayed "
-					+ this.HEAT_STORAGE.extractHeat(1, false) + " heat from itsself");
 		}
 	}
-	
+
 	private boolean canburn(BlockPos pos) {
 		return (!world.isAirBlock(pos.down(1))) && world.isAirBlock(pos);
 	}
@@ -64,16 +62,16 @@ public class TileHeatCell extends TileEntity implements ITickable {
 	public int getHeat() {
 		return HEAT_STORAGE.getHeatstored();
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		
+		compound.setTag("heat", HEAT_CAPABILITY.writeNBT(HEAT_STORAGE, null));
 		return super.writeToNBT(compound);
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
+		HEAT_CAPABILITY.readNBT(HEAT_STORAGE, null, compound.getTag("heat"));
 		super.readFromNBT(compound);
 	}
 }

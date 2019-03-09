@@ -9,9 +9,11 @@ import btf.objects.blocks.tiles.TileFluidHopper;
 import btf.objects.blocks.tiles.TileFurnaceMultiBlock;
 import btf.objects.blocks.tiles.TileHarvesterTicker;
 import btf.objects.blocks.tiles.TileHeatCell;
-import btf.objects.blocks.tiles.TileHeater;
 import btf.objects.blocks.tiles.TileShower;
 import btf.objects.blocks.tiles.TileSqueezer;
+import btf.objects.blocks.tiles.heaters.HeaterBlazeing;
+import btf.objects.blocks.tiles.heaters.HeaterEnder;
+import btf.objects.blocks.tiles.heaters.HeaterFluid;
 import btf.util.handlers.GuiHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
@@ -43,7 +45,11 @@ public class ServerProxy {
 		GameRegistry.registerTileEntity(TileSqueezer.class, new ResourceLocation(Vars.MOD_ID, "tile_squeezer"));
 		GameRegistry.registerTileEntity(TileAccumulator.class, new ResourceLocation(Vars.MOD_ID, "tile_accumulator"));
 		GameRegistry.registerTileEntity(TileFluidHopper.class, new ResourceLocation(Vars.MOD_ID, "tile_fluid_hopper"));
-		GameRegistry.registerTileEntity(TileHeater.class, new ResourceLocation(Vars.MOD_ID, "tile_heater_items"));
+		GameRegistry.registerTileEntity(HeaterBlazeing.class,
+				new ResourceLocation(Vars.MOD_ID, "tile_heater_blazeing"));
+		GameRegistry.registerTileEntity(HeaterFluid.class, new ResourceLocation(Vars.MOD_ID, "tile_heater_fluid"));
+		GameRegistry.registerTileEntity(HeaterEnder.class, new ResourceLocation(Vars.MOD_ID, "tile_heater_ender"));
+
 	}
 
 	public void init(FMLInitializationEvent e) {
@@ -51,6 +57,14 @@ public class ServerProxy {
 	}
 
 	public void openGUI(GuiScreen guiScreenIn) {
+		/**
+		 * empty because no implementation on server
+		 */
+	}
 
+	public void registerRenders() {
+		/**
+		 * empty because no implementation on server
+		 */
 	}
 }

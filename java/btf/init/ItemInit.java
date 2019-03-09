@@ -8,6 +8,7 @@ import btf.objects.items.book.ItemBook;
 import btf.objects.tools.ImPossibiliumAxe;
 import btf.objects.tools.ImPossibiliumPickaxe;
 import btf.objects.tools.ImPossibiliumSword;
+import btf.objects.tools.ItemMeltingTool;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.util.EnumHelper;
@@ -52,6 +53,7 @@ public class ItemInit {
 	public static ImPossibiliumSword imPossibiliumSword = new ImPossibiliumSword(impossiblealloy, "sword_impossible");
 	public static ImPossibiliumPickaxe imPossibiliumPick = new ImPossibiliumPickaxe(impossiblealloy, "pick_impossible");
 	public static ItemTeleportingWand telewand = new ItemTeleportingWand();
+	public static ItemBase melting_tool	= new ItemMeltingTool();
 	
 	public static Item[] items = {
 			//book
@@ -87,7 +89,8 @@ public class ItemInit {
 			//Plating and other crafting materials
 			plating,
 			machine_plating,
-			telewand
+			telewand,
+			melting_tool
 	};
 
 	private static void oreDictionaryRegistration() {

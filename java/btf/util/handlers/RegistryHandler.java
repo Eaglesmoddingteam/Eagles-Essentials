@@ -1,9 +1,8 @@
 package btf.util.handlers;
 
-
 import btf.init.BlockInit;
+import btf.init.FluidInit;
 import btf.init.ItemInit;
-import btf.main.Vars;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -23,6 +22,7 @@ public class RegistryHandler {
 	@SubscribeEvent
 	public static void onBlockRegister(RegistryEvent.Register<Block> event) {
 		BlockInit.register(event.getRegistry());
+		FluidInit.registerBlocks(event.getRegistry());
 	}
 
 	@SubscribeEvent

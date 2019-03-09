@@ -50,31 +50,29 @@ public class Machine extends BlockBase implements ITileEntityProvider {
 
 	@Override
 	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-		switch (typeIn) { 
+		switch (typeIn) {
 		case FACTORYTABLE: {
 			if (side == side.EAST || side == side.WEST || side == side.NORTH || side == side.SOUTH)
 				return true;
 			return false;
 		}
-		case BLOCKBREAKER: {
+		case BLOCKBREAKER:
 			if (side == side.DOWN)
 				return true;
 			return false;
-		}
-		case HARVESTER: {
-			if (side == side.DOWN)
-				return true;
+
+		case HARVESTER:
+			return side == side.DOWN;
+
+		case TELEPORTER:
 			return false;
-		}
-		case TELEPORTER: {
+
+		case WOODENCASING:
 			return false;
-		}
-		case WOODENCASING: {
+
+		case ASSEMBLER:
 			return false;
-		}
-		case ASSEMBLER: {
-			return false;
-		}
+
 		}
 		return false;
 	}

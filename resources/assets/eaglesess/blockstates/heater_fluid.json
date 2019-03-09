@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+            "bottom": "eaglesess:machines/fluid_heater_bottom",
+            "top": "eaglesess:machines/fluid_heater_top",
+            "side": "eaglesess:machines/fluid_heater_side+"
+		},
+		"model": "half_slab"
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}]
+	}
+}
