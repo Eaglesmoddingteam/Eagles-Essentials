@@ -32,7 +32,7 @@ public class TileMelter extends TileEntity implements ITickable {
     /**
      * checks if capabilities are null, and if so, reassigns them
      * <p>
-     * forge inserts some capabilities later than this class initializes, but doesn't inject those fields those values are still null.
+     * forge inserts some capabilities later than this class initializes, but doesn't inject these fields so their values are still null.
      */
     private static void checkCapabilities() {
         if (heatStorageCapability == null) {
