@@ -2,15 +2,7 @@ package btf.proxy;
 
 import btf.main.Main;
 import btf.main.Vars;
-import btf.objects.blocks.TileAccumulator;
-import btf.objects.blocks.tiles.TileBlockBreaker;
-import btf.objects.blocks.tiles.TileFluidCollector;
-import btf.objects.blocks.tiles.TileFluidHopper;
-import btf.objects.blocks.tiles.TileFurnaceMultiBlock;
-import btf.objects.blocks.tiles.TileHarvesterTicker;
-import btf.objects.blocks.tiles.TileHeatCell;
-import btf.objects.blocks.tiles.TileShower;
-import btf.objects.blocks.tiles.TileSqueezer;
+import btf.objects.blocks.tiles.*;
 import btf.objects.blocks.tiles.heaters.HeaterBlazeing;
 import btf.objects.blocks.tiles.heaters.HeaterEnder;
 import btf.objects.blocks.tiles.heaters.HeaterFluid;
@@ -49,7 +41,7 @@ public class ServerProxy {
 				new ResourceLocation(Vars.MOD_ID, "tile_heater_blazeing"));
 		GameRegistry.registerTileEntity(HeaterFluid.class, new ResourceLocation(Vars.MOD_ID, "tile_heater_fluid"));
 		GameRegistry.registerTileEntity(HeaterEnder.class, new ResourceLocation(Vars.MOD_ID, "tile_heater_ender"));
-
+		GameRegistry.registerTileEntity(TileMelter.class, new ResourceLocation(Vars.MOD_ID, "tile_melter"));
 	}
 
 	public void init(FMLInitializationEvent e) {

@@ -33,6 +33,7 @@ item.platinum_gear.name = Platinum Gear
 item.tin_gear.name=Tin Gear
 item.wooden_gear.name=Wooden Gear
 item.stone_gear.name=Stone Gear
+item.melting_tool.name=Melting Tool
 
 tile.bronze_block.name=Block Of Bronze
 tile.brass_block.name=Block Of Brass
@@ -65,3 +66,4 @@ tile.casing_ender.name=Ender casing
 tile.casing_metallic.name=Metallic casing
 tile.casing_ceramic.name=Ceramic casing
 tile.burned_clay.name=Burned Clay
+tile.melter.name=Melter

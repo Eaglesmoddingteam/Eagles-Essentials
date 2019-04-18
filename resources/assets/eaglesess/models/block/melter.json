@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "particle": "eaglesess:machines/metalic_casing",
+        "down": "eaglesess:machines/melter_bottom",
+        "west": "eaglesess:machines/melter_side",
+        "east": "eaglesess:machines/melter_side",
+        "north": "eaglesess:machines/melter_side",
+        "south": "eaglesess:machines/melter_side",
+        "up" : "eaglesess:machines/melter_top"
+    }
+}

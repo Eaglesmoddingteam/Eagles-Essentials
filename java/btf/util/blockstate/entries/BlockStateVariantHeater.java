@@ -3,7 +3,7 @@ package btf.util.blockstate.entries;
 import java.util.ArrayList;
 import java.util.List;
 
-import btf.util.obj.IBlockStateVariantEntry;;
+import btf.util.obj.IBlockStateVariantEntry;
 
 public class BlockStateVariantHeater implements IBlockStateVariantEntry {
 

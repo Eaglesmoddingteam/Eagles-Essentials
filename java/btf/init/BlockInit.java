@@ -1,14 +1,7 @@
 package btf.init;
 
 import btf.main.Main;
-import btf.objects.blocks.BlockAccumulator;
-import btf.objects.blocks.BlockBase;
-import btf.objects.blocks.BlockFluidCollector;
-import btf.objects.blocks.BlockFurnaceBrick;
-import btf.objects.blocks.BlockHeatCell;
-import btf.objects.blocks.BlockSqueezer;
-import btf.objects.blocks.Machine;
-import btf.objects.blocks.MachineShower;
+import btf.objects.blocks.*;
 import btf.objects.blocks.tiles.heaters.HeaterBlazeing;
 import btf.objects.blocks.tiles.heaters.HeaterEnder;
 import btf.objects.blocks.tiles.heaters.HeaterFluid;
@@ -67,6 +60,7 @@ public class BlockInit {
 	public static BlockAccumulator impossibilium_Accumulator = new BlockAccumulator();
 	public static BlockBase telepad = new BlockBase("telepad", Material.ROCK, Main.blocksTab, 2);
 	public static BlockSqueezer squeezer = new BlockSqueezer();
+	public static BlockMelter melter = new BlockMelter();
 
 	public static Block[] blocks = {
 
@@ -78,7 +72,7 @@ public class BlockInit {
 
 			// machines
 			casingWooden, casingBedrockium, casingEnder, casingMetallic, casingCeramic, fluidcollector, harvester,
-			teleporter, blockbreaker, shower, heatCell, telepad, squeezer, impossibilium_Accumulator,
+			teleporter, blockbreaker, shower, heatCell, telepad, squeezer, impossibilium_Accumulator, melter,
 			HeaterBlazeing.BLOCK, HeaterEnder.BLOCK, HeaterFluid.BLOCK };
 
 	public static void changeblockdata() {
