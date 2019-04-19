@@ -28,7 +28,7 @@ public class CapabilityHeat {
 
 			@Override
 			public void readNBT(Capability<IHeatStorage> capability, IHeatStorage instance, EnumFacing side,
-					NBTBase nbt) {
+			                    NBTBase nbt) {
 				if (!(instance instanceof HeatStorage))
 					return;
 				NBTTagCompound tagCompound = (NBTTagCompound) nbt;

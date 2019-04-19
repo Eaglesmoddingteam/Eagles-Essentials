@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "eaglesess:machines/ender_casing"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "eaglesess:machines/ender_casing"
+  }
 }

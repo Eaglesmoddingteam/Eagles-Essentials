@@ -17,10 +17,20 @@ import net.minecraft.world.World;
 
 public class HeaterEnder extends TileHeater {
 
+	public static final Block BLOCK = new BlockHeaterBase("heater_ender") {
+
+		@Override
+		public TileEntity createNewTileEntity(World worldIn, int meta) {
+			return new HeaterEnder();
+		}
+
+	};
+	public static TESRHeater<HeaterEnder> TESR = new TESRHeater<>();
+
 	public HeaterEnder() {
 		super();
 	}
-	
+
 	@Override
 	public int getMaxout() {
 		return 160;
@@ -74,15 +84,4 @@ public class HeaterEnder extends TileHeater {
 			Main.NETWORK.sendToServer(new MessageRequestUpdate(pos));
 		}
 	}
-
-	public static TESRHeater<HeaterEnder> TESR = new TESRHeater<>();
-
-	public static final Block BLOCK = new BlockHeaterBase("heater_ender") {
-
-		@Override
-		public TileEntity createNewTileEntity(World worldIn, int meta) {
-			return new HeaterEnder();
-		}
-
-	};
 }

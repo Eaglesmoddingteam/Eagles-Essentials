@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "down":"eaglesess:heatproofbricks/heatproofbricks",
-        "up":"eaglesess:heatproofbricks/heatproofbricks",
-        "west":"eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
-        "north":"eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
-        "south":"eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
-        "east":"eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
-        "all":"eaglesess:heatproofbricks/heatproofbricks"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "eaglesess:heatproofbricks/heatproofbricks",
+    "up": "eaglesess:heatproofbricks/heatproofbricks",
+    "west": "eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
+    "north": "eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
+    "south": "eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
+    "east": "eaglesess:heatproofbricks/heatproofbricks_greatfurnace-center",
+    "all": "eaglesess:heatproofbricks/heatproofbricks"
+  }
 }

@@ -2,28 +2,28 @@ package btf.util.obj;
 
 public interface IBlockStateVariantEntry {
 
-	public Type[] getTypes();
+	Type[] getTypes();
 
-	public int getKeyForType(Type type);
+	int getKeyForType(Type type);
 
-	public Type getTypeByKey(int key);
+	Type getTypeByKey(int key);
 
-	public boolean hasKey(int key);
+	boolean hasKey(int key);
 
-	public Class<? extends Type> getTypeBaseClass();
+	Class<? extends Type> getTypeBaseClass();
 
-	public boolean hasType(Type type);
+	boolean hasType(Type type);
 
-	public interface Type {
-
-		@Override
-		public String toString();
+	interface Type {
 
 		@Override
-		public int hashCode();
+		String toString();
 
 		@Override
-		public boolean equals(Object arg0);
-	
+		int hashCode();
+
+		@Override
+		boolean equals(Object arg0);
+
 	}
 }

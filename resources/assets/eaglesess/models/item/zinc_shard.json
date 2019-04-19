@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "eaglesess:items/zinc_shard"
-	}
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "eaglesess:items/zinc_shard"
+  }
 }

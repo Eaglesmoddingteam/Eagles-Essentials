@@ -10,23 +10,23 @@ import net.minecraft.world.World;
 
 public class BlockAccumulator extends BlockBase implements ITileEntityProvider {
 
-    public BlockAccumulator() {
-        super("accumulator_impossibilium", Material.ROCK, Main.blocksTab, 2);
-    }
+	public BlockAccumulator() {
+		super("accumulator_impossibilium", Material.ROCK, Main.blocksTab, 2);
+	}
 
-    @Override
-    public boolean hasTileEntity() {
-        return true;
-    }
+	@Override
+	public boolean hasTileEntity() {
+		return true;
+	}
 
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileAccumulator();
-    }
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		return new TileAccumulator();
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileAccumulator();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileAccumulator();
+	}
 
 }

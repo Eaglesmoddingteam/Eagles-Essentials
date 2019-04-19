@@ -1,7 +1,5 @@
 package btf.client;
 
-import org.lwjgl.opengl.GL11;
-
 import btf.objects.blocks.tiles.TileHeater;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,6 +10,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.ForgeHooksClient;
+import org.lwjgl.opengl.GL11;
 
 public class TESRHeater<T extends TileHeater> extends TileEntitySpecialRenderer<T> {
 

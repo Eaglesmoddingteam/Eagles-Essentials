@@ -1,9 +1,5 @@
 package btf.packet;
 
-import java.io.IOException;
-
-import org.apache.logging.log4j.Logger;
-
 import btf.main.Main;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -14,6 +10,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
 
 public class MessageUpdateTE implements IMessage {
 
@@ -52,7 +51,7 @@ public class MessageUpdateTE implements IMessage {
 				BlockPos pos = new BlockPos(message.compound.getInteger("x"), message.compound.getInteger("y"),
 						message.compound.getInteger("z"));
 				TileEntity te = Minecraft.getMinecraft().world.getTileEntity(pos);
-				if(te != null) {
+				if (te != null) {
 					te.readFromNBT(message.compound);
 				}
 			});

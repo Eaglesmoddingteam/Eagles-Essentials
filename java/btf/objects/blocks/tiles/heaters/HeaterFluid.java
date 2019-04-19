@@ -10,15 +10,19 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidEvent.FluidSpilledEvent;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 public class HeaterFluid extends TileHeater {
 
+	public static final Block BLOCK = new BlockHeaterBase("heater_fluid") {
+
+		@Override
+		public TileEntity createNewTileEntity(World worldIn, int meta) {
+			return new HeaterFluid();
+		}
+
+	};
 	FluidTank tank = new FluidTank(4000);
 
 	@Override
@@ -73,13 +77,4 @@ public class HeaterFluid extends TileHeater {
 		CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.readNBT(tank, null, compound.getTag("fluid"));
 		super.readFromNBT(compound);
 	}
-
-	public static final Block BLOCK = new BlockHeaterBase("heater_fluid") {
-
-		@Override
-		public TileEntity createNewTileEntity(World worldIn, int meta) {
-			return new HeaterFluid();
-		}
-
-	};
 }

@@ -1,7 +1,5 @@
 package btf.objects.items;
 
-import java.util.List;
-
 import btf.init.BlockInit;
 import btf.main.Main;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemTeleportingWand extends ItemBase {
 
 	public ItemTeleportingWand() {
@@ -25,7 +25,7 @@ public class ItemTeleportingWand extends ItemBase {
 
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
-			EnumFacing facing, float hitX, float hitY, float hitZ) {
+	                                  EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (!player.isSneaking()) {
 			if (!stack.hasTagCompound()) {
@@ -37,7 +37,7 @@ public class ItemTeleportingWand extends ItemBase {
 			keyBuilder.append(compound.getInteger("colour"));
 			String key = keyBuilder.toString();
 			if (testTeleporter(pos, worldIn)) {
-				compound.setIntArray(key, new int[] { pos.getX(), pos.getY(), pos.getZ() });
+				compound.setIntArray(key, new int[]{pos.getX(), pos.getY(), pos.getZ()});
 				player.sendStatusMessage(new TextComponentString("Teleporter set!"), true);
 			}
 		} else if (stack.hasTagCompound()) {
@@ -53,9 +53,9 @@ public class ItemTeleportingWand extends ItemBase {
 					}
 			} else {
 				player.sendStatusMessage(new TextComponentString(//
-						new StringBuilder("No teleportation reciever set on the colour ")
-								.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase())
-								.toString()),
+								new StringBuilder("No teleportation reciever set on the colour ")
+										.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase())
+										.toString()),
 						true);
 			}
 		}
@@ -76,7 +76,7 @@ public class ItemTeleportingWand extends ItemBase {
 			int newColour = oldColour == 15 ? 0 : oldColour + 1;
 			compound.setInteger("colour", newColour);
 			playerIn.sendStatusMessage(new TextComponentString(new StringBuffer("Set active colour to ")
-					.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase()).toString()),
+							.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase()).toString()),
 					true);
 		} else if (stack.hasTagCompound()) {
 			NBTTagCompound compound = stack.getTagCompound();
@@ -91,9 +91,9 @@ public class ItemTeleportingWand extends ItemBase {
 					}
 			} else {
 				playerIn.sendStatusMessage(new TextComponentString(//
-						new StringBuilder("No teleportation reciever set on the colour ")
-								.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase())
-								.toString()),
+								new StringBuilder("No teleportation reciever set on the colour ")
+										.append(EnumDyeColor.byMetadata(compound.getInteger("colour")).name().toLowerCase())
+										.toString()),
 						true);
 			}
 		}

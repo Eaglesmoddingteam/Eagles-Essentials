@@ -6,7 +6,7 @@ import java.util.List;
 public class CableNetwork {
 
 	final List<TileCable> cables;
-	
+
 	public CableNetwork() {
 		cables = new ArrayList<>();
 	}
@@ -14,6 +14,6 @@ public class CableNetwork {
 	public List<TileCable> getCables() {
 		return cables;
 	}
-	
-	
+
+
 }

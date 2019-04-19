@@ -1,7 +1,5 @@
 package btf.objects.blocks.tiles;
 
-import java.util.Random;
-
 import btf.main.Main;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -19,16 +17,17 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import java.util.Random;
+
 public class TileShower extends TileEntity {
 
-	private FluidTank storage = new FluidTank(FluidRegistry.WATER, 0, 3000);
 	Capability<IFluidHandler> fluidHandler = CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
-
 	Random r = new Random();
 	BlockPos start;
 	BlockPos growing;
 	boolean initialized = false;
 	int startX, startY, startZ;
+	private FluidTank storage = new FluidTank(FluidRegistry.WATER, 0, 3000);
 
 	public void fire(World worldIn) {
 		if (!initialized)
@@ -36,8 +35,8 @@ public class TileShower extends TileEntity {
 		if (canShower()) {
 			Shower();
 			EntityPlayer player = worldIn.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 100, false);
-			World world = !player.isServerWorld() ? player.world : worldIn ;
-			world.spawnParticle(EnumParticleTypes.DRIP_WATER, false, pos.getX(), pos.getY(),  pos.getZ(), min(pos.getX(), growing.getX()), -3, min(pos.getZ(), growing.getZ()), 1);
+			World world = !player.isServerWorld() ? player.world : worldIn;
+			world.spawnParticle(EnumParticleTypes.DRIP_WATER, false, pos.getX(), pos.getY(), pos.getZ(), min(pos.getX(), growing.getX()), -3, min(pos.getZ(), growing.getZ()), 1);
 		}
 	}
 
@@ -83,7 +82,7 @@ public class TileShower extends TileEntity {
 		storage.writeToNBT(compound);
 		return super.writeToNBT(compound);
 	}
-	
+
 	private int min(int i, int i1) {
 		return i - i1;
 	}

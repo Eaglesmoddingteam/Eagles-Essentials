@@ -9,7 +9,7 @@ import net.minecraft.world.IBlockAccess;
 public class SeasonColor implements IBlockColor {
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-		
+
 		return 3145858;
 	}
 }

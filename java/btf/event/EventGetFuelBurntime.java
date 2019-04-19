@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 public class EventGetFuelBurntime extends Event {
 
 	private final Fluid fluid;
-	private int burnTime = 0;
 	private final int amount;
+	private int burnTime = 0;
 
 	public EventGetFuelBurntime(FluidStack stack) {
 		fluid = stack.getFluid();
@@ -30,7 +30,7 @@ public class EventGetFuelBurntime extends Event {
 	 * <li>every value above zero is the amount of ticks it takes per bucket to
 	 * burn.</li>
 	 * </ul>
-	 * 
+	 *
 	 * @return the amount of ticks it takes to burn 1 bucket
 	 */
 	public int getBurnTime() {
@@ -44,9 +44,8 @@ public class EventGetFuelBurntime extends Event {
 	 * <li>every value above zero is the amount of ticks it takes per bucket to
 	 * burn.</li>
 	 * </ul>
-	 * 
-	 * @param burnTime
-	 *            the new value for burntime
+	 *
+	 * @param burnTime the new value for burntime
 	 */
 	public void setBurnTime(int burnTime) {
 		this.burnTime = burnTime;

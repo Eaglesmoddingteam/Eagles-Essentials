@@ -1,6 +1,6 @@
 {
-	"parent": "item/handheld",
-	"textures": {
-		"layer0": "eaglesess:items/telestick"
-	}
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "eaglesess:items/telestick"
+  }
 }

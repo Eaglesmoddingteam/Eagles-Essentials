@@ -1,9 +1,5 @@
 package btf.util.helpers.block.render;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
 import btf.main.Vars;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -19,21 +15,25 @@ import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
 public class ModelDoubleSlab<T, E> implements IModel {
 
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format,
-			Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+	                        Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
 
 		return null;
 	}
 
-	
+
 	public class ModelDoubleSlabLoader implements ICustomModelLoader {
 
 		@Override
 		public void onResourceManagerReload(IResourceManager resourceManager) {
-			
+
 		}
 
 		@Override
@@ -45,9 +45,9 @@ public class ModelDoubleSlab<T, E> implements IModel {
 		public IModel loadModel(ResourceLocation modelLocation) throws Exception {
 			return null;
 		}
-		
+
 	}
-	
+
 	private class BakedDoubleSlab implements IBakedModel {
 
 		@Override
@@ -81,6 +81,6 @@ public class ModelDoubleSlab<T, E> implements IModel {
 		public ItemOverrideList getOverrides() {
 			return null;
 		}
-		
+
 	}
 }

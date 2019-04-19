@@ -19,7 +19,7 @@ public class BlockBase extends Block {
 		setHarvestLevel("pickaxe", 0);
 		setHardness(1);
 	}
-	
+
 	public BlockBase(String name, Material materialIn, CreativeTabs tab, int harvestlevel) {
 		this(name, materialIn, tab);
 		setHarvestLevel("pickaxe", harvestlevel);

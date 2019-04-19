@@ -8,7 +8,6 @@ import btf.objects.blocks.tiles.TileHarvesterTicker;
 import btf.util.handlers.MachineHandler;
 import btf.util.handlers.MachineHandler.MachineTypes;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -17,8 +16,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -51,27 +48,23 @@ public class Machine extends BlockBase implements ITileEntityProvider {
 	@Override
 	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		switch (typeIn) {
-		case FACTORYTABLE: {
-			if (side == side.EAST || side == side.WEST || side == side.NORTH || side == side.SOUTH)
-				return true;
-			return false;
-		}
-		case BLOCKBREAKER:
-			if (side == side.DOWN)
-				return true;
-			return false;
+			case FACTORYTABLE: {
+				return side == EnumFacing.EAST || side == EnumFacing.WEST || side == EnumFacing.NORTH || side == EnumFacing.SOUTH;
+			}
+			case BLOCKBREAKER:
+				return side == EnumFacing.DOWN;
 
-		case HARVESTER:
-			return side == side.DOWN;
+			case HARVESTER:
+				return side == EnumFacing.DOWN;
 
-		case TELEPORTER:
-			return false;
+			case TELEPORTER:
+				return false;
 
-		case WOODENCASING:
-			return false;
+			case WOODENCASING:
+				return false;
 
-		case ASSEMBLER:
-			return false;
+			case ASSEMBLER:
+				return false;
 
 		}
 		return false;
@@ -80,31 +73,31 @@ public class Machine extends BlockBase implements ITileEntityProvider {
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		switch (typeIn) {
-		case WOODENCASING: {
-			break;
-		}
-		case BLOCKBREAKER: {
-			return new TileBlockBreaker();
-		}
-		case FACTORYTABLE: {
-			return new TileCrafterMachine();
-		}
-		case HARVESTER: {
-			return new TileHarvesterTicker();
-		}
-		case TELEPORTER: {
-			break;
-		}
-		case ASSEMBLER: {
-			return new TileAssembler();
-		}
+			case WOODENCASING: {
+				break;
+			}
+			case BLOCKBREAKER: {
+				return new TileBlockBreaker();
+			}
+			case FACTORYTABLE: {
+				return new TileCrafterMachine();
+			}
+			case HARVESTER: {
+				return new TileHarvesterTicker();
+			}
+			case TELEPORTER: {
+				break;
+			}
+			case ASSEMBLER: {
+				return new TileAssembler();
+			}
 		}
 		return super.createTileEntity(world, state);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-			ItemStack stack) {
+	                            ItemStack stack) {
 		if (this.typeIn == MachineHandler.MachineTypes.HARVESTER
 				|| this.typeIn == MachineHandler.MachineTypes.BLOCKBREAKER) {
 			worldIn.setBlockState(pos, this.getBlockState().getBaseState().withProperty(FACING,
@@ -130,7 +123,7 @@ public class Machine extends BlockBase implements ITileEntityProvider {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	                                EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		MachineHandler.OnBlockActivated(worldIn, pos, state, playerIn, hand, typeIn);
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}

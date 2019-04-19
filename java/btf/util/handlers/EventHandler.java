@@ -8,6 +8,6 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void getDrops() {
-		
+
 	}
 }

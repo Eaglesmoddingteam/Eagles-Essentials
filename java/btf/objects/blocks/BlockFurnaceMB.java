@@ -17,57 +17,51 @@ import net.minecraft.world.World;
 
 public class BlockFurnaceMB extends BlockBase {
 	public static final IProperty<Boolean> isMaster = PropertyBool.create("ismaster");
+
 	public BlockFurnaceMB(String name, Material materialIn) {
 		super(name, materialIn, CreativeTabs.BUILDING_BLOCKS);
 		setDefaultState(this.blockState.getBaseState().withProperty(isMaster, Boolean.valueOf(false)));
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-									EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		BlockPos bpos = new BlockPos(pos.getX()-1, pos.getY()-1, pos.getZ());
+	                                EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		BlockPos bpos = new BlockPos(pos.getX() - 1, pos.getY() - 1, pos.getZ());
 		boolean right = true;
 		if (worldIn.getBlockState(bpos).getBlock() == this) {
-			for (int x= 0; x<=3; x++){
-				if (right) {
-					for (int y= 0; x<=3; x++) {
-						for (int z= 0; x<=3; x++) {
-							if (worldIn.getBlockState(new BlockPos(pos.getX()+x, pos.getY() +y, pos.getZ()+z)).getBlock() == this) {
-							
-							} else {
-								right = false;
-							}
-						}
-					}
-				}	
-			}
-		} else if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY()-1, pos.getZ()-1)).getBlock() == this) {
-			for (int x= 0; x<=3; x++){
-				if (right) {
-					for (int y= 0; x<=3; x++) {
-						for (int z= 0; x<=3; x++) {
-							if (worldIn.getBlockState(new BlockPos(pos.getX()+x, pos.getY() +y, pos.getZ()+z)).getBlock() == this) {
-							
-							} else {
-								right = false;
-							}
-						}
-					}
-				}	
-			}
+			right = isRight(worldIn, pos, right);
+		} else if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ() - 1)).getBlock() == this) {
+			right = isRight(worldIn, pos, right);
 		}
 		if (right) {
 			worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(isMaster, Boolean.valueOf(true)));
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
-	
+
+	private boolean isRight(World worldIn, BlockPos pos, boolean right) {
+		for (int x = 0; x <= 3; x++) {
+			if (right) {
+				for (int y = 0; x <= 3; x++) {
+					for (int z = 0; x <= 3; x++) {
+						if (worldIn.getBlockState(new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z)).getBlock() == this) {
+
+						} else {
+							right = false;
+						}
+					}
+				}
+			}
+		}
+		return right;
+	}
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-			ItemStack stack) {
+	                            ItemStack stack) {
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, isMaster);
@@ -75,7 +69,7 @@ public class BlockFurnaceMB extends BlockBase {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		if(state.getValue(isMaster).booleanValue())
+		if (state.getValue(isMaster).booleanValue())
 			return 0;
 		else
 			return 1;

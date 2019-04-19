@@ -4,7 +4,6 @@ package btf.init;
 import btf.main.Main;
 import btf.objects.items.ItemBase;
 import btf.objects.items.ItemTeleportingWand;
-import btf.objects.items.book.ItemBook;
 import btf.objects.tools.ImPossibiliumAxe;
 import btf.objects.tools.ImPossibiliumPickaxe;
 import btf.objects.tools.ImPossibiliumSword;
@@ -16,10 +15,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemInit {
-	
+
 	public static Item.ToolMaterial impossiblealloy = EnumHelper.addToolMaterial("Impossible", 15, 8000, 10, 20, 10);
 
-	/** ingots **/
+	/**
+	 * ingots
+	 **/
 	public static ItemBase bronze = new ItemBase("bronze_ingot", Main.ingotsTab);
 	public static ItemBase brass = new ItemBase("brass_ingot", Main.ingotsTab);
 	public static ItemBase cobalt = new ItemBase("cobalt_ingot", Main.ingotsTab);
@@ -29,7 +30,9 @@ public class ItemInit {
 	public static ItemBase tin = new ItemBase("tin_ingot", Main.ingotsTab);
 	public static ItemBase impossibleAlloy = new ItemBase("impossible_alloy", Main.ingotsTab);
 	public static ItemBase zincShard = new ItemBase("zinc_shard", Main.ingotsTab);
-	/** gears **/
+	/**
+	 * gears
+	 **/
 	public static ItemBase brassGear = new ItemBase("brass_gear", Main.itemstab);
 	public static ItemBase bronzeGear = new ItemBase("bronze_gear", Main.itemstab);
 	public static ItemBase cobaltGear = new ItemBase("cobalt_gear", Main.itemstab);
@@ -53,8 +56,8 @@ public class ItemInit {
 	public static ImPossibiliumSword imPossibiliumSword = new ImPossibiliumSword(impossiblealloy, "sword_impossible");
 	public static ImPossibiliumPickaxe imPossibiliumPick = new ImPossibiliumPickaxe(impossiblealloy, "pick_impossible");
 	public static ItemTeleportingWand telewand = new ItemTeleportingWand();
-	public static ItemBase melting_tool	= new ItemMeltingTool();
-	
+	public static ItemBase melting_tool = new ItemMeltingTool();
+
 	public static Item[] items = {
 			//book
 			//book,
@@ -96,7 +99,7 @@ public class ItemInit {
 	private static void oreDictionaryRegistration() {
 
 		//ingots
-		OreDictionary.registerOre("ingotBronze",bronze);
+		OreDictionary.registerOre("ingotBronze", bronze);
 		OreDictionary.registerOre("ingotBrass", brass);
 		OreDictionary.registerOre("ingotCobalt", cobalt);
 		OreDictionary.registerOre("ingotCopper", copper);
@@ -126,7 +129,7 @@ public class ItemInit {
 	}
 
 	public static void registerModels(ModelRegistryEvent registryEvent) {
-		for (Item item: items) {
+		for (Item item : items) {
 			Main.proxy.registerItemRenderer(item, 0, "inventory");
 		}
 	}

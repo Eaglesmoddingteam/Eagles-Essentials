@@ -11,9 +11,9 @@ public class GuiBook extends GuiScreen {
 	public GuiBook() {
 		width = Minecraft.getMinecraft().displayWidth;
 		height = Minecraft.getMinecraft().displayHeight;
-		drawHoveringText("hey",  2, 2);
+		drawHoveringText("hey", 2, 2);
 	}
-	
+
 	@Override
 	public void onResize(Minecraft mcIn, int w, int h) {
 		this.width = w;

@@ -1,12 +1,10 @@
 package btf.client;
 
 import btf.objects.entity.EntityHeatBall;
-import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderZombie;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 

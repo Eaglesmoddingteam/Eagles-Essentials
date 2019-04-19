@@ -6,8 +6,12 @@ import net.minecraft.item.ItemStack;
 
 public class AccumulatorRecipeinit {
 
+	private AccumulatorRecipeinit(){
+
+	}
+
 	public static void register() {
 		AccumulatorRegistry.INSTANCE.addRecipe(new ItemStack(Blocks.DIRT), Blocks.LAVA);
 	}
-	
+
 }

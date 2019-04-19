@@ -1,16 +1,15 @@
 package btf.util.registry;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import btf.util.registry.objects.PreparedRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class PreparedRecipeRegistry {
-	private ArrayList<PreparedRecipe> recipes = new ArrayList<>(1000);
+import java.util.ArrayList;
+import java.util.Iterator;
 
+public class PreparedRecipeRegistry {
 	private final static PreparedRecipeRegistry INSTANCE = new PreparedRecipeRegistry();
+	private ArrayList<PreparedRecipe> recipes = new ArrayList<>(1000);
 
 	public static void addRecipe(IRecipe recipe) {
 		INSTANCE.recipes.add(new PreparedRecipe(recipe));

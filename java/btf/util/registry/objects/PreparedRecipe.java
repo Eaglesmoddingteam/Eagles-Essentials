@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package btf.util.registry.objects;
 

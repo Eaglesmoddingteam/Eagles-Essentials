@@ -17,6 +17,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlockInit {
 
+	private BlockInit(){
+
+	}
+
 	@AddFluid
 	public static BlockBase bronzeBlock = new BlockBase("bronze_block", Material.IRON, Main.ingotsTab);
 	public static BlockBase clayBurned = new BlockBase("burned_clay", Material.CLAY, Main.ingotsTab, 1);
@@ -73,7 +77,7 @@ public class BlockInit {
 			// machines
 			casingWooden, casingBedrockium, casingEnder, casingMetallic, casingCeramic, fluidcollector, harvester,
 			teleporter, blockbreaker, shower, heatCell, telepad, squeezer, impossibilium_Accumulator, melter,
-			HeaterBlazeing.BLOCK, HeaterEnder.BLOCK, HeaterFluid.BLOCK };
+			HeaterBlazeing.BLOCK, HeaterEnder.BLOCK, HeaterFluid.BLOCK};
 
 	public static void changeblockdata() {
 		fluidcollector.setLightOpacity(2);

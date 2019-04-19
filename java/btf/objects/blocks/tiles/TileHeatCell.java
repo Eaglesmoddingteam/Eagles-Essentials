@@ -13,11 +13,11 @@ import net.minecraftforge.common.capabilities.Capability;
 
 public class TileHeatCell extends TileEntity implements ITickable {
 
+	static final Capability<IHeatStorage> HEAT_CAPABILITY = CapabilityHeat.HEAT_CAPABILITY;
+	final HeatStorage HEAT_STORAGE = new HeatStorage(20, 20, 2000);
 	int tick = 0;
 	BlockPos[] surroundings;
 	boolean initialized = false;
-	static final Capability<IHeatStorage> HEAT_CAPABILITY = CapabilityHeat.HEAT_CAPABILITY;
-	final HeatStorage HEAT_STORAGE = new HeatStorage(20, 20, 2000);
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -31,8 +31,8 @@ public class TileHeatCell extends TileEntity implements ITickable {
 
 	private void init() {
 		this.initialized = true;
-		this.surroundings = new BlockPos[] { this.pos.west(), this.pos.east(), this.pos.north(), this.pos.south(),
-				this.pos.down(), this.pos.up() };
+		this.surroundings = new BlockPos[]{this.pos.west(), this.pos.east(), this.pos.north(), this.pos.south(),
+				this.pos.down(), this.pos.up()};
 	}
 
 	@Override

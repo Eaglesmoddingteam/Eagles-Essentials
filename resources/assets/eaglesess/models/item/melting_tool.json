@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "eaglesess:tools/melting_tool"
-    }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "eaglesess:tools/melting_tool"
+  }
 }

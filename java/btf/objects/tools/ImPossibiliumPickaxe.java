@@ -1,10 +1,5 @@
 package btf.objects.tools;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.util.NonNullList;
-import org.objectweb.asm.tree.analysis.Value;
-
 import btf.main.Main;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -15,8 +10,11 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class ImPossibiliumPickaxe extends ItemPickaxe {
 	int mode;
@@ -30,7 +28,7 @@ public class ImPossibiliumPickaxe extends ItemPickaxe {
 
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
-			EntityLivingBase entityLiving) {
+	                                EntityLivingBase entityLiving) {
 		NBTTagCompound c = stack.getTagCompound();
 		if (c != null) {
 			if (c.hasKey("mode")) {
@@ -62,19 +60,19 @@ public class ImPossibiliumPickaxe extends ItemPickaxe {
 	public void breakblocks(Integer mode, World world, BlockPos breakpos, EnumFacing facing, Entity entity) {
 		boolean inX = false;
 		switch (facing) {
-		case DOWN:
-			break;
-		case WEST:
-		case EAST:
-			breakpos = breakpos.add(0, -1, -1);
-			break;
-		case NORTH:
-		case SOUTH:
-			inX = true;
-			breakpos = breakpos.add(-1, -1, 0);
-			break;
-		case UP:
-			break;
+			case DOWN:
+				break;
+			case WEST:
+			case EAST:
+				breakpos = breakpos.add(0, -1, -1);
+				break;
+			case NORTH:
+			case SOUTH:
+				inX = true;
+				breakpos = breakpos.add(-1, -1, 0);
+				break;
+			case UP:
+				break;
 		}
 		if (inX)
 			for (int x = 0; x < 3; x++) {
@@ -104,7 +102,7 @@ public class ImPossibiliumPickaxe extends ItemPickaxe {
 						if (!world.isRemote) {
 							NonNullList<ItemStack> drops = NonNullList.create();
 							world.getBlockState(tobreak).getBlock().getDrops(drops, world, tobreak,
-							world.getBlockState(tobreak), 0);
+									world.getBlockState(tobreak), 0);
 							Main.LOGGER.info(drops);
 							for (ItemStack stack : drops) {
 								InventoryHelper.spawnItemStack(world, entity.posX, entity.posY, entity.posZ, stack);

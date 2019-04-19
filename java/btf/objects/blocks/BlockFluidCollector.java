@@ -8,10 +8,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucket;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -43,7 +39,7 @@ public class BlockFluidCollector extends BlockBase implements ITileEntityProvide
 	@SideOnly(Side.CLIENT)
 	@Override
 	public net.minecraft.util.BlockRenderLayer getBlockLayer() {
-		if (Minecraft.getMinecraft().isFancyGraphicsEnabled())
+		if (Minecraft.isFancyGraphicsEnabled())
 			return BlockRenderLayer.TRANSLUCENT;
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
@@ -65,16 +61,15 @@ public class BlockFluidCollector extends BlockBase implements ITileEntityProvide
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) {
-			if (playerIn.isSneaking() && playerIn.getHeldItem(hand).isEmpty()) {
-				IFluidHandler t = worldIn.getTileEntity(pos)
-						.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
-				FluidTank tank = (FluidTank) t;
-				playerIn.sendStatusMessage(new TextComponentString("you stored " + tank.getFluidAmount() + " mb!!"),
-						true);
-				worldIn.getTileEntity(pos).markDirty();
-			}
+	                                EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!worldIn.isRemote && playerIn.isSneaking() && playerIn.getHeldItem(hand).isEmpty()) {
+
+			IFluidHandler t = worldIn.getTileEntity(pos)
+					.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
+			FluidTank tank = (FluidTank) t;
+			playerIn.sendStatusMessage(new TextComponentString("you stored " + tank.getFluidAmount() + " mb!!"),
+					true);
+			worldIn.getTileEntity(pos).markDirty();
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 
@@ -82,9 +77,7 @@ public class BlockFluidCollector extends BlockBase implements ITileEntityProvide
 
 	@Override
 	public void neighborChanged(IBlockState stateIn, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-		if (!worldIn.isRemote)
-			if (worldIn.isBlockPowered(pos) && worldIn.isBlockPowered(fromPos)) {
+		if (!worldIn.isRemote && worldIn.isBlockPowered(pos) && worldIn.isBlockPowered(fromPos))
 				((TileFluidCollector) worldIn.getTileEntity(pos)).activate();
-			}
 	}
 }

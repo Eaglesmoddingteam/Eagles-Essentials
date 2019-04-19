@@ -1,25 +1,22 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "eaglesess:casingwood"
-    },
-    "variants": {
-        "normal": [{}],
-        "inventory": [{}],
-        "facing": {
-
-            "north": {},
-
-            "south": {},
-
-            "west": {},
-
-            "east": {},
-
-            "up": {},
-
-            "down": {}
-
-        }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "eaglesess:casingwood"
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "facing": {
+      "north": {},
+      "south": {},
+      "west": {},
+      "east": {},
+      "up": {},
+      "down": {}
     }
+  }
 }

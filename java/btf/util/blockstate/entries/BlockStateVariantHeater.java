@@ -1,16 +1,16 @@
 package btf.util.blockstate.entries;
 
+import btf.util.obj.IBlockStateVariantEntry;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import btf.util.obj.IBlockStateVariantEntry;
 
 public class BlockStateVariantHeater implements IBlockStateVariantEntry {
 
 
 	List<Type> TYPES = new ArrayList();
 
-	public int add(Type type){
+	public int add(Type type) {
 		TYPES.add(type);
 		return TYPES.lastIndexOf(type);
 	}
@@ -18,7 +18,7 @@ public class BlockStateVariantHeater implements IBlockStateVariantEntry {
 	public void remove(Type type) {
 		TYPES.remove(type);
 	}
-	
+
 	@Override
 	public Type[] getTypes() {
 		return this.TYPES.toArray(new Type[TYPES.size()]);

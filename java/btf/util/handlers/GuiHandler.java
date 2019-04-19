@@ -14,32 +14,32 @@ import javax.annotation.Nullable;
 
 public class GuiHandler implements IGuiHandler {
 
-    public static final int furnace = 0;
+	public static final int furnace = 0;
 
-    @Nullable
-    @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        BlockPos pos = new BlockPos(x, y, z);
-        TileEntity te = world.getTileEntity(pos);
-        switch (ID) {
-            case furnace:
-                TileFurnaceMultiBlock furnaceMultiBlock = (TileFurnaceMultiBlock) te;
-                return new GuiFurnace(furnaceMultiBlock,
-                        new ContainerFurnaceMultiBlock(player.inventory, furnaceMultiBlock));
-        }
-        return null;
-    }
+	@Nullable
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		BlockPos pos = new BlockPos(x, y, z);
+		TileEntity te = world.getTileEntity(pos);
+		switch (ID) {
+			case furnace:
+				TileFurnaceMultiBlock furnaceMultiBlock = (TileFurnaceMultiBlock) te;
+				return new GuiFurnace(furnaceMultiBlock,
+						new ContainerFurnaceMultiBlock(player.inventory, furnaceMultiBlock));
+		}
+		return null;
+	}
 
-    @Nullable
-    @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        BlockPos pos = new BlockPos(x, y, z);
-        TileEntity te = world.getTileEntity(pos);
-        switch (ID) {
-            case furnace:
-                TileFurnaceMultiBlock furnaceMultiBlock = (TileFurnaceMultiBlock) te;
-                return new ContainerFurnaceMultiBlock(player.inventory, furnaceMultiBlock);
-        }
-        return null;
-    }
+	@Nullable
+	@Override
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		BlockPos pos = new BlockPos(x, y, z);
+		TileEntity te = world.getTileEntity(pos);
+		switch (ID) {
+			case furnace:
+				TileFurnaceMultiBlock furnaceMultiBlock = (TileFurnaceMultiBlock) te;
+				return new ContainerFurnaceMultiBlock(player.inventory, furnaceMultiBlock);
+		}
+		return null;
+	}
 }

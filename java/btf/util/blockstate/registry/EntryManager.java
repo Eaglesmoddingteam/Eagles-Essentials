@@ -1,14 +1,12 @@
 package btf.util.blockstate.registry;
 
+import btf.main.Main;
+import btf.util.obj.IBlockStateVariantEntry;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
-
-import btf.main.Main;
-import btf.util.obj.IBlockStateVariantEntry;
-import net.minecraft.client.settings.GameSettings;
 
 public class EntryManager {
 

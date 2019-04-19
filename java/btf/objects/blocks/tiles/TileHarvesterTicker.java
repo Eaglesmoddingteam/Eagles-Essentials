@@ -1,7 +1,5 @@
 package btf.objects.blocks.tiles;
 
-import java.util.Random;
-
 import btf.objects.blocks.Machine;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
@@ -12,6 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+
+import java.util.Random;
 
 public class TileHarvesterTicker extends TileEntity {
 	BlockPos checkstart = null;
@@ -80,68 +80,68 @@ public class TileHarvesterTicker extends TileEntity {
 	private void init() {
 		initialized = true;
 		switch (world.getBlockState(pos).getValue(Machine.FACING)) {
-		case DOWN: {
-			break;
-		}
-		case EAST: {
-			dropx = pos.getX() - 0.5;
-			dropy = pos.getY();
-			dropz = pos.getZ() + 0.5;
-			checkstart = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1);
-			break;
-		}
-		case NORTH: {
-			dropx = pos.getX() + 0.5;
-			dropy = pos.getY();
-			dropz = pos.getZ() + 1.5;
-			checkstart = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 3);
-			break;
-		}
-		case SOUTH: {
-			dropx = pos.getX() + 0.5;
-			dropy = pos.getY();
-			dropz = pos.getZ() - 0.5;
-			checkstart = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1);
-			break;
-		}
-		case UP: {
+			case DOWN: {
+				break;
+			}
+			case EAST: {
+				dropx = pos.getX() - 0.5;
+				dropy = pos.getY();
+				dropz = pos.getZ() + 0.5;
+				checkstart = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1);
+				break;
+			}
+			case NORTH: {
+				dropx = pos.getX() + 0.5;
+				dropy = pos.getY();
+				dropz = pos.getZ() + 1.5;
+				checkstart = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 3);
+				break;
+			}
+			case SOUTH: {
+				dropx = pos.getX() + 0.5;
+				dropy = pos.getY();
+				dropz = pos.getZ() - 0.5;
+				checkstart = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1);
+				break;
+			}
+			case UP: {
 
-		}
-		case WEST: {
-			dropx = pos.getX() + 1.5;
-			dropy = pos.getY();
-			dropz = pos.getZ() + 0.5;
-			checkstart = new BlockPos(pos.getX() - 3, pos.getY(), pos.getZ() - 1);
-			break;
-		}
+			}
+			case WEST: {
+				dropx = pos.getX() + 1.5;
+				dropy = pos.getY();
+				dropz = pos.getZ() + 0.5;
+				checkstart = new BlockPos(pos.getX() - 3, pos.getY(), pos.getZ() - 1);
+				break;
+			}
 		}
 		switch (world.getBlockState(pos).getValue(Machine.FACING)) {
-		case DOWN: {
-			break;
-		}
-		case EAST: {
-			statebehind = world.getBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()));
-			behind = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
-			break;
-		}
-		case NORTH: {
-			statebehind = world.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1));
-			behind = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
-			break;
-		}
-		case SOUTH: {
-			statebehind = world.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1));
-			behind = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
-			break;
-		}
-		case UP: {
+			case DOWN: {
+				break;
+			}
+			case EAST: {
+				statebehind = world.getBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()));
+				behind = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
+				break;
+			}
+			case NORTH: {
+				statebehind = world.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1));
+				behind = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
+				break;
+			}
+			case SOUTH: {
+				statebehind = world.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1));
+				behind = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
+				break;
+			}
+			case UP: {
 
-		}
-		case WEST: {
-			statebehind = world.getBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()));
-			behind = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
-			break;
-		}
+			}
+			case WEST: {
+				statebehind = world.getBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()));
+				behind = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
+				break;
+			}
 		}
 	}
 

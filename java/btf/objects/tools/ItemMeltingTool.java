@@ -1,11 +1,5 @@
 package btf.objects.tools;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
 import btf.main.Main;
 import btf.objects.entity.EntityHeatBall;
 import btf.objects.items.ItemBase;
@@ -22,11 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -34,107 +24,58 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ItemMeltingTool extends ItemBase {
 
 	static Capability<IHeatStorage> HEAT = CapabilityHeat.HEAT_CAPABILITY;
 
-	public enum Mode {
-
-		AUTO_MELT, FAST, NORMAL, INSANE, OFF;
-
-		public String getDisplaySentence() {
-			switch (this) {
-			case AUTO_MELT:
-				return "integrated furnace!";
-			case FAST:
-				return "not that fast";
-			case INSANE:
-				return "almost insane, but yet closer to pretty OK";
-			case NORMAL:
-				return "would like to call it 'normal', but it's rather slow";
-			case OFF:
-				return "don't feel like working today";
-			default:
-				return "nothin' really, what you up to?";
-			}
-		}
-
-		public int getSpeedModifier() {
-			switch (this) {
-			case AUTO_MELT:
-			case NORMAL:
-				return 1;
-			case FAST:
-				return 2;
-			case INSANE:
-				return 5;
-			default:
-			case OFF:
-				return 0;
-			}
-		}
-
-		public static Mode get(ItemStack stack) {
-			if (stack.isEmpty() || !stack.hasTagCompound()) {
-				return Mode.OFF;
-			} else {
-				NBTTagCompound compound = stack.getTagCompound();
-				if (!compound.hasKey("mode")) {
-					return Mode.OFF;
-				}
-				String name = compound.getString("mode");
-				try {
-					return Mode.valueOf(name.toUpperCase());
-				} catch (IllegalArgumentException e) {
-					Main.LOGGER.catching(e);
-					return Mode.OFF;
-				}
-			}
-		}
-	}
-
 	public ItemMeltingTool() {
 		super("melting_tool", 1, Main.itemstab);
 	}
-	
-	@Override
-	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
-		if(Mode.get(itemstack) == Mode.AUTO_MELT) {
-			handleCustomBreak(itemstack, pos, player);
-			return true;
-		}
-		return false;
-	}
-	
+
 	/**
 	 * handles the breaking of a block with auto melt enabled, breaks the block and drops the molen items
+	 *
 	 * @param itemstack the stack of the tool
-	 * @param pos the position of the to be broken block
-	 * @param player the player that wields the tool
+	 * @param pos       the position of the to be broken block
+	 * @param player    the player that wields the tool
 	 */
 	private static void handleCustomBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
 		World world = player.world;
-		if(world.isRemote) {
+		if (world.isRemote) {
 			return;
 		}
 		IBlockState state = world.getBlockState(pos);
-		
+
 		NonNullList<ItemStack> drops = NonNullList.create();
 		state.getBlock().getDrops(drops, world, pos, state, 0);
 
 		world.setBlockToAir(pos);
 
 		FurnaceRecipes recipes = FurnaceRecipes.instance();
-		
-		for(ItemStack stack : drops) {
+
+		for (ItemStack stack : drops) {
 			ItemStack result = recipes.getSmeltingResult(stack).copy();
-			if(!result.isEmpty()) {
+			if (!result.isEmpty()) {
 				result.setCount(stack.getCount());
 				InventoryHelper.spawnItemStack(world, player.posX, player.posY, player.posZ, result);
 			} else {
 				InventoryHelper.spawnItemStack(world, player.posX, player.posY, player.posZ, stack);
 			}
 		}
+	}
+
+	@Override
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+		if (Mode.get(itemstack) == Mode.AUTO_MELT) {
+			handleCustomBreak(itemstack, pos, player);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -242,7 +183,7 @@ public class ItemMeltingTool extends ItemBase {
 
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
-			EntityLivingBase entityLiving) {
+	                                EntityLivingBase entityLiving) {
 		IHeatStorage storage = stack.getCapability(HEAT, EnumFacing.DOWN);
 		if (storage != null) {
 			storage.extractHeat(4, false);
@@ -308,8 +249,61 @@ public class ItemMeltingTool extends ItemBase {
 		tooltip.add(Mode.get(stack).getDisplaySentence());
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
-	
-	
+
+	public enum Mode {
+
+		AUTO_MELT, FAST, NORMAL, INSANE, OFF;
+
+		public static Mode get(ItemStack stack) {
+			if (stack.isEmpty() || !stack.hasTagCompound()) {
+				return Mode.OFF;
+			} else {
+				NBTTagCompound compound = stack.getTagCompound();
+				if (!compound.hasKey("mode")) {
+					return Mode.OFF;
+				}
+				String name = compound.getString("mode");
+				try {
+					return Mode.valueOf(name.toUpperCase());
+				} catch (IllegalArgumentException e) {
+					Main.LOGGER.catching(e);
+					return Mode.OFF;
+				}
+			}
+		}
+
+		public String getDisplaySentence() {
+			switch (this) {
+				case AUTO_MELT:
+					return "integrated furnace!";
+				case FAST:
+					return "not that fast";
+				case INSANE:
+					return "almost insane, but yet closer to pretty OK";
+				case NORMAL:
+					return "would like to call it 'normal', but it's rather slow";
+				case OFF:
+					return "don't feel like working today";
+				default:
+					return "nothin' really, what you up to?";
+			}
+		}
+
+		public int getSpeedModifier() {
+			switch (this) {
+				case AUTO_MELT:
+				case NORMAL:
+					return 1;
+				case FAST:
+					return 2;
+				case INSANE:
+					return 5;
+				default:
+				case OFF:
+					return 0;
+			}
+		}
+	}
 
 	private static class HeatProvider implements ICapabilitySerializable<NBTTagCompound> {
 

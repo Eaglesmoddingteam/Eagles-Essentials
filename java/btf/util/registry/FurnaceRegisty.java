@@ -10,10 +10,10 @@ public class FurnaceRegisty {
 	private static CustomFurnaceRecipe[] finalizedRecipes;
 
 	public static void addRecipe(CustomFurnaceRecipe recipe) {
-		if (!(recipe == null)) 
-		FurnaceRegisty.recipes.add(recipe);
+		if (!(recipe == null))
+			FurnaceRegisty.recipes.add(recipe);
 	}
-	
+
 	public static void postInit() {
 		Main.furnaceHelper.setRecipes(recipes);
 	}

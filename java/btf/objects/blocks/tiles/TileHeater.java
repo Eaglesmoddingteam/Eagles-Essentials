@@ -1,7 +1,5 @@
 package btf.objects.blocks.tiles;
 
-import javax.annotation.Nullable;
-
 import btf.util.energy.heat.CapabilityHeat;
 import btf.util.energy.heat.HeatStorage;
 import btf.util.energy.heat.IHeatStorage;
@@ -16,17 +14,19 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 public abstract class TileHeater extends TileEntity implements ITickable {
 
 	protected static Capability<IItemHandler> ITEM_HANDLER = CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	protected static Capability<IHeatStorage> HEAT = CapabilityHeat.HEAT_CAPABILITY;
 	public IItemHandler inventory = new ItemStackHandler(1);
-	protected HeatStorage heatStorage = new HeatStorage(0, getMaxout(), 4000);
 	public ItemStack burning = ItemStack.EMPTY;
+	public long lastChangeTime;
+	protected HeatStorage heatStorage = new HeatStorage(0, getMaxout(), 4000);
 	int burntimeLeft = 0;
 	int genRate;
 	int maxout;
-	public long lastChangeTime;
 
 	public TileHeater() {
 		this.maxout = getMaxout();

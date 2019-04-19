@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "particle": "eaglesess:machines/wooden_casing",
-        "down": "eaglesess:machines/squeezer_bottom",
-        "west": "eaglesess:machines/squeezer_front1",
-        "east": "eaglesess:machines/squeezer_front1",
-        "north": "eaglesess:machines/squeezer_front2",
-        "south": "eaglesess:machines/squeezer_front2",
-        "up" : "eaglesess:machines/squeezer_top"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "eaglesess:machines/wooden_casing",
+    "down": "eaglesess:machines/squeezer_bottom",
+    "west": "eaglesess:machines/squeezer_front1",
+    "east": "eaglesess:machines/squeezer_front1",
+    "north": "eaglesess:machines/squeezer_front2",
+    "south": "eaglesess:machines/squeezer_front2",
+    "up": "eaglesess:machines/squeezer_top"
+  }
 }

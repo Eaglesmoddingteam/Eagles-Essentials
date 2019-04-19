@@ -21,6 +21,59 @@ import net.minecraft.world.World;
 
 public class HeaterBlazeing extends TileHeater {
 
+	public static final Block BLOCK = new BlockHeaterBase("heater_blazeing") {
+
+		@Override
+		public TileEntity createNewTileEntity(World worldIn, int meta) {
+			return new HeaterBlazeing();
+		}
+
+		public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+		                                EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+			HeaterBlazeing heater = (HeaterBlazeing) worldIn.getTileEntity(pos);
+			if (heater == null) {
+				return false;
+			}
+			if (!worldIn.isRemote) {
+				ItemStack stack = playerIn.getHeldItem(hand);
+				ItemStack inv = heater.inventory.getStackInSlot(0);
+				if (stack.isEmpty()) {
+					ItemStack extracted = heater.inventory.extractItem(0, playerIn.isSneaking() ? inv.getCount() : 1,
+							false);
+					if (!playerIn.inventory.addItemStackToInventory(extracted)) {
+						InventoryHelper.spawnItemStack(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, extracted);
+					}
+				} else {
+					if (stack.isItemEqual(inv) || inv.isEmpty()) {
+						if (inv.getMaxStackSize() >= inv.getCount() + stack.getCount()) {
+							if (playerIn.isSneaking()) {
+								heater.inventory.insertItem(0, stack.copy(), false);
+								stack.setCount(0);
+							} else {
+								ItemStack copy = stack.copy();
+								copy.setCount(1);
+								stack.shrink(1);
+								heater.inventory.insertItem(0, copy, false);
+
+							}
+						} else {
+							int left = inv.getMaxStackSize() - inv.getCount();
+							ItemStack copy = stack.copy();
+							copy.setCount(left);
+							stack.shrink(left);
+							heater.inventory.insertItem(0, copy, false);
+						}
+					} else {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
+	};
+	public static TESRHeater<HeaterBlazeing> TESR = new TESRHeater<>();
+
 	public HeaterBlazeing() {
 		super();
 	}
@@ -78,58 +131,4 @@ public class HeaterBlazeing extends TileHeater {
 			Main.NETWORK.sendToServer(new MessageRequestUpdate(pos));
 		}
 	}
-
-	public static TESRHeater<HeaterBlazeing> TESR = new TESRHeater<>();
-
-	public static final Block BLOCK = new BlockHeaterBase("heater_blazeing") {
-
-		@Override
-		public TileEntity createNewTileEntity(World worldIn, int meta) {
-			return new HeaterBlazeing();
-		}
-
-		public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-				EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-			HeaterBlazeing heater = (HeaterBlazeing) worldIn.getTileEntity(pos);
-			if (heater == null) {
-				return false;
-			}
-			if (!worldIn.isRemote) {
-				ItemStack stack = playerIn.getHeldItem(hand);
-				ItemStack inv = heater.inventory.getStackInSlot(0);
-				if (stack.isEmpty()) {
-					ItemStack extracted = heater.inventory.extractItem(0, playerIn.isSneaking() ? inv.getCount() : 1,
-							false);
-					if (!playerIn.inventory.addItemStackToInventory(extracted)) {
-						InventoryHelper.spawnItemStack(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, extracted);
-					}
-				} else {
-					if (stack.isItemEqual(inv) || inv.isEmpty()) {
-						if (inv.getMaxStackSize() >= inv.getCount() + stack.getCount()) {
-							if(playerIn.isSneaking()) {
-							heater.inventory.insertItem(0, stack.copy(), false);
-							stack.setCount(0);
-							} else {
-								ItemStack copy = stack.copy(); 
-								copy.setCount(1);
-								stack.shrink(1);
-								heater.inventory.insertItem(0, copy, false);
-
-							}
-						} else {
-							int left = inv.getMaxStackSize() - inv.getCount();
-							ItemStack copy = stack.copy();
-							copy.setCount(left);
-							stack.shrink(left);
-							heater.inventory.insertItem(0, copy, false);
-						}
-					} else {
-						return false;
-					}
-				}
-			}
-			return true;
-		}
-
-	};
 }

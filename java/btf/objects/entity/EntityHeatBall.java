@@ -1,12 +1,8 @@
 package btf.objects.entity;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
@@ -16,16 +12,15 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class EntityHeatBall extends Entity {
 
-	EntityPlayer player = null;
-
 	public static AxisAlignedBB AABB = new AxisAlignedBB(0.0, 0.0, 0.0, 0.2, 0.2, 0.2);
+	EntityPlayer player = null;
 
 	public EntityHeatBall(World world) {
 		super(world);

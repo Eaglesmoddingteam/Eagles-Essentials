@@ -1,12 +1,10 @@
 package btf.main;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import btf.init.AccumulatorRecipeinit;
 import btf.init.BlockInit;
 import btf.init.FluidInit;
 import btf.init.ItemInit;
+import btf.objects.blocks.tiles.TileMelter;
 import btf.objects.entity.EntityHeatBall;
 import btf.packet.MessageRequestUpdate;
 import btf.packet.MessageUpdateTE;
@@ -33,17 +31,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Vars.MOD_ID, name = Vars.MOD_NAME, version = Vars.MOD_VERS)
 public class Main {
 
 	public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(Vars.MOD_ID);
-
-	public Main() {
-		FluidRegistry.enableUniversalBucket();
-		MinecraftForge.EVENT_BUS.register(new BurnTimeHandler());
-	}
-
+	public static final Logger LOGGER = LogManager.getLogger(Vars.MOD_ID);
 	public static MainHandler furnaceHelper = new MainHandler();
 	public static CreativeTabs ingotsTab = new CreativeTabs("EaglesEssentialsIngots") {
 		@Override
@@ -63,14 +58,15 @@ public class Main {
 			return new ItemStack(BlockInit.harvester);
 		}
 	};
-
-	public static final Logger LOGGER = LogManager.getLogger(Vars.MOD_ID);
-
 	@Mod.Instance
 	public static Main instance;
-
 	@SidedProxy(clientSide = Vars.clientp, serverSide = Vars.serverp)
 	public static ServerProxy proxy;
+
+	public Main() {
+		FluidRegistry.enableUniversalBucket();
+		MinecraftForge.EVENT_BUS.register(new BurnTimeHandler());
+	}
 
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
@@ -82,7 +78,7 @@ public class Main {
 		AccumulatorRecipeinit.register();
 		EntityRegistry.registerModEntity(new ResourceLocation(Vars.MOD_ID, "heatball"), EntityHeatBall.class, "Heat Ball", 0, instance, 0, 20, false);
 		proxy.registerRenders();
-		
+
 	}
 
 	@Mod.EventHandler
@@ -96,5 +92,6 @@ public class Main {
 	@Mod.EventHandler
 	public static void postInit(FMLPostInitializationEvent event) {
 		FurnaceRegisty.postInit();
+		TileMelter.checkCapabilities();
 	}
 }

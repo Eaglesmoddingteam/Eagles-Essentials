@@ -32,12 +32,12 @@ public class TileFluidHopper extends TileEntity implements ITickable {
 	}
 
 	private void execute() {
-		if(canWork()) {
+		if (canWork()) {
 			IFluidHandler in = world.getTileEntity(this.in).getCapability(FH, facing);
 			IFluidHandler out = world.getTileEntity(this.out).getCapability(FH, facing);
 			FluidStack stack = in.drain(20, false);
 			stack.amount = out.fill(stack, true);
-			if(stack.amount > 0) {
+			if (stack.amount > 0) {
 				in.drain(stack, true);
 			}
 		}
